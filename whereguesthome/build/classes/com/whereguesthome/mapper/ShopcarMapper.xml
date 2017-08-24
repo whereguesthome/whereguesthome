@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whereguesthome.mapper.ShopcarMapper">
+<!--  根据用户id查询当前用户购买的商品 -->
+<!-- 一对多 -->
+<select id="findShopcarList" resultMap="ShopcarGoods" parameterType="java.lang.String">
+select s.*,g.* from shopcar s INNER JOIN goods g on s.g_id=g.g_id WHERE s.u_id=#{u_id}
+</select>
+<resultMap type="com.whereguesthome.pojo.Shopcar" id="ShopcarGoods">
+  <id column="s.u_id" property="u_id"></id>
+  <result column="s.g_id" property="g_id"/>
+  <result column="s.g_id" property="g_id"/>
+  <result column="s.s_num" property="s_num"/>
+  <collection property="Goodss" javaType="com.whereguesthome.pojo.Goods">
+   <id column="g.g_id" property="gId"></id>
+  <result column="g.g_name" property="gName"/>
+  <result column="g.g_price" property="gPrice"/>
+  <result column="g.g_saleprice" property="gSaleprice"/>
+  <result column="g.g_describes" property="gDescribes"/>
+  <result column="g.g_photo" property="gPhoto"/>
+  </collection>
+</resultMap>
+
+</mapper>

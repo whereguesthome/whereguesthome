@@ -8,7 +8,7 @@ public class Shopcar {
 	private int g_id;// 商品id
 	private int s_num;// 商品数量
 	private User user;// 用户信息
-	private List<Goods> list;// 商品列表
+	private List<Goods> Goodss;// 商品列表
 
 	public int getU_id() {
 		return u_id;
@@ -43,11 +43,11 @@ public class Shopcar {
 	}
 
 	public List<Goods> getList() {
-		return list;
+		return Goodss;
 	}
 
-	public void setList(List<Goods> list) {
-		this.list = list;
+	public void setList(List<Goods> Goodss) {
+		this.Goodss = Goodss;
 	}
 
 }
