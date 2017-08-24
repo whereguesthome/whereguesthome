@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whereguesthome.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.whereguesthome.pojo.Goods">
+    <id column="g_id" jdbcType="INTEGER" property="gId" />
+    <result column="g_name" jdbcType="VARCHAR" property="gName" />
+    <result column="g_price" jdbcType="DOUBLE" property="gPrice" />
+    <result column="g_saleprice" jdbcType="DOUBLE" property="gSaleprice" />
+    <result column="g_describes" jdbcType="VARCHAR" property="gDescribes" />
+    <result column="g_contents" jdbcType="VARCHAR" property="gContents" />
+    <result column="g_photo" jdbcType="VARCHAR" property="gPhoto" />
+    <result column="g_repertory" jdbcType="INTEGER" property="gRepertory" />
+    <result column="g_saledate" jdbcType="DATE" property="gSaledate" />
+    <result column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="g_status" jdbcType="INTEGER" property="gStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    g_id, g_name, g_price, g_saleprice, g_describes, g_contents, g_photo, g_repertory, 
+    g_saledate, s_id, g_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where g_id = #{gId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where g_id = #{gId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whereguesthome.pojo.Goods">
+    insert into goods (g_id, g_name, g_price, 
+      g_saleprice, g_describes, g_contents, 
+      g_photo, g_repertory, g_saledate, 
+      s_id, g_status)
+    values (#{gId,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gPrice,jdbcType=DOUBLE}, 
+      #{gSaleprice,jdbcType=DOUBLE}, #{gDescribes,jdbcType=VARCHAR}, #{gContents,jdbcType=VARCHAR}, 
+      #{gPhoto,jdbcType=VARCHAR}, #{gRepertory,jdbcType=INTEGER}, #{gSaledate,jdbcType=DATE}, 
+      #{sId,jdbcType=INTEGER}, #{gStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.whereguesthome.pojo.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gId != null">
+        g_id,
+      </if>
+      <if test="gName != null">
+        g_name,
+      </if>
+      <if test="gPrice != null">
+        g_price,
+      </if>
+      <if test="gSaleprice != null">
+        g_saleprice,
+      </if>
+      <if test="gDescribes != null">
+        g_describes,
+      </if>
+      <if test="gContents != null">
+        g_contents,
+      </if>
+      <if test="gPhoto != null">
+        g_photo,
+      </if>
+      <if test="gRepertory != null">
+        g_repertory,
+      </if>
+      <if test="gSaledate != null">
+        g_saledate,
+      </if>
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="gStatus != null">
+        g_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gId != null">
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="gName != null">
+        #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gPrice != null">
+        #{gPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="gSaleprice != null">
+        #{gSaleprice,jdbcType=DOUBLE},
+      </if>
+      <if test="gDescribes != null">
+        #{gDescribes,jdbcType=VARCHAR},
+      </if>
+      <if test="gContents != null">
+        #{gContents,jdbcType=VARCHAR},
+      </if>
+      <if test="gPhoto != null">
+        #{gPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="gRepertory != null">
+        #{gRepertory,jdbcType=INTEGER},
+      </if>
+      <if test="gSaledate != null">
+        #{gSaledate,jdbcType=DATE},
+      </if>
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="gStatus != null">
+        #{gStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.whereguesthome.pojo.Goods">
+    update goods
+    <set>
+      <if test="gName != null">
+        g_name = #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gPrice != null">
+        g_price = #{gPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="gSaleprice != null">
+        g_saleprice = #{gSaleprice,jdbcType=DOUBLE},
+      </if>
+      <if test="gDescribes != null">
+        g_describes = #{gDescribes,jdbcType=VARCHAR},
+      </if>
+      <if test="gContents != null">
+        g_contents = #{gContents,jdbcType=VARCHAR},
+      </if>
+      <if test="gPhoto != null">
+        g_photo = #{gPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="gRepertory != null">
+        g_repertory = #{gRepertory,jdbcType=INTEGER},
+      </if>
+      <if test="gSaledate != null">
+        g_saledate = #{gSaledate,jdbcType=DATE},
+      </if>
+      <if test="sId != null">
+        s_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="gStatus != null">
+        g_status = #{gStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.whereguesthome.pojo.Goods">
+    update goods
+    set g_name = #{gName,jdbcType=VARCHAR},
+      g_price = #{gPrice,jdbcType=DOUBLE},
+      g_saleprice = #{gSaleprice,jdbcType=DOUBLE},
+      g_describes = #{gDescribes,jdbcType=VARCHAR},
+      g_contents = #{gContents,jdbcType=VARCHAR},
+      g_photo = #{gPhoto,jdbcType=VARCHAR},
+      g_repertory = #{gRepertory,jdbcType=INTEGER},
+      g_saledate = #{gSaledate,jdbcType=DATE},
+      s_id = #{sId,jdbcType=INTEGER},
+      g_status = #{gStatus,jdbcType=INTEGER}
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+</mapper>

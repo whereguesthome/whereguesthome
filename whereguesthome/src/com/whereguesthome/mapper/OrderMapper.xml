@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whereguesthome.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.whereguesthome.pojo.Order">
+    <id column="o_id" jdbcType="INTEGER" property="oId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="o_realname" jdbcType="VARCHAR" property="oRealname" />
+    <result column="o_address" jdbcType="VARCHAR" property="oAddress" />
+    <result column="o_zip" jdbcType="VARCHAR" property="oZip" />
+    <result column="o_phone" jdbcType="VARCHAR" property="oPhone" />
+    <result column="o_payment" jdbcType="VARCHAR" property="oPayment" />
+    <result column="o_remarks" jdbcType="VARCHAR" property="oRemarks" />
+    <result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
+    <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
+    <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    o_id, u_id, o_realname, o_address, o_zip, o_phone, o_payment, o_remarks, o_time, 
+    o_tag, o_price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where o_id = #{oId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where o_id = #{oId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whereguesthome.pojo.Order">
+    insert into order (o_id, u_id, o_realname, 
+      o_address, o_zip, o_phone, 
+      o_payment, o_remarks, o_time, 
+      o_tag, o_price)
+    values (#{oId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{oRealname,jdbcType=VARCHAR}, 
+      #{oAddress,jdbcType=VARCHAR}, #{oZip,jdbcType=VARCHAR}, #{oPhone,jdbcType=VARCHAR}, 
+      #{oPayment,jdbcType=VARCHAR}, #{oRemarks,jdbcType=VARCHAR}, #{oTime,jdbcType=TIMESTAMP}, 
+      #{oTag,jdbcType=VARCHAR}, #{oPrice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.whereguesthome.pojo.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="oRealname != null">
+        o_realname,
+      </if>
+      <if test="oAddress != null">
+        o_address,
+      </if>
+      <if test="oZip != null">
+        o_zip,
+      </if>
+      <if test="oPhone != null">
+        o_phone,
+      </if>
+      <if test="oPayment != null">
+        o_payment,
+      </if>
+      <if test="oRemarks != null">
+        o_remarks,
+      </if>
+      <if test="oTime != null">
+        o_time,
+      </if>
+      <if test="oTag != null">
+        o_tag,
+      </if>
+      <if test="oPrice != null">
+        o_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oId != null">
+        #{oId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="oRealname != null">
+        #{oRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="oAddress != null">
+        #{oAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="oZip != null">
+        #{oZip,jdbcType=VARCHAR},
+      </if>
+      <if test="oPhone != null">
+        #{oPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="oPayment != null">
+        #{oPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="oRemarks != null">
+        #{oRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="oTime != null">
+        #{oTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oTag != null">
+        #{oTag,jdbcType=VARCHAR},
+      </if>
+      <if test="oPrice != null">
+        #{oPrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.whereguesthome.pojo.Order">
+    update order
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="oRealname != null">
+        o_realname = #{oRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="oAddress != null">
+        o_address = #{oAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="oZip != null">
+        o_zip = #{oZip,jdbcType=VARCHAR},
+      </if>
+      <if test="oPhone != null">
+        o_phone = #{oPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="oPayment != null">
+        o_payment = #{oPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="oRemarks != null">
+        o_remarks = #{oRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="oTime != null">
+        o_time = #{oTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oTag != null">
+        o_tag = #{oTag,jdbcType=VARCHAR},
+      </if>
+      <if test="oPrice != null">
+        o_price = #{oPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where o_id = #{oId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.whereguesthome.pojo.Order">
+    update order
+    set u_id = #{uId,jdbcType=INTEGER},
+      o_realname = #{oRealname,jdbcType=VARCHAR},
+      o_address = #{oAddress,jdbcType=VARCHAR},
+      o_zip = #{oZip,jdbcType=VARCHAR},
+      o_phone = #{oPhone,jdbcType=VARCHAR},
+      o_payment = #{oPayment,jdbcType=VARCHAR},
+      o_remarks = #{oRemarks,jdbcType=VARCHAR},
+      o_time = #{oTime,jdbcType=TIMESTAMP},
+      o_tag = #{oTag,jdbcType=VARCHAR},
+      o_price = #{oPrice,jdbcType=DOUBLE}
+    where o_id = #{oId,jdbcType=INTEGER}
+  </update>
+</mapper>
