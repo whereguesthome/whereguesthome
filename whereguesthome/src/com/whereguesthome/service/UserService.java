@@ -2,17 +2,25 @@ package com.whereguesthome.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import com.whereguesthome.pojo.User;
 
 public interface UserService {
-	   
 
-    //Ìí¼ÓÓÃ»§
-	    int insert(User record);
-   
-	    //²éÑ¯ËùÓÐ
-	    List<User> findAll();
-   
-	    
-	    boolean uname(String uName);
+	// ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	int insert(User record);
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	List<User> findAll();
+
+	boolean uname(String uName);
+
+	/**
+	 * @param id
+	 *            ç”¨æˆ·id
+	 * @param model
+	 *            æ¨¡åž‹
+	 */
+	void deleteUserById(Integer id, Model model);
 }

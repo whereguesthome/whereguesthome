@@ -24,9 +24,7 @@ public interface ShopcarService {
 	// 修改商品的数量
 	void modifyShopcarIndex(Shopcar shopcar);
 
-
 	// 添加商品到购物车ﳵ
 	void addShopcar(Shopcar shopcar, HttpSession session, Model model);
-     
 
 }

@@ -1,10 +1,10 @@
 package com.whereguesthome.service.imp;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.whereguesthome.mapper.UserMapper;
 import com.whereguesthome.md5.md5jdkUtil;
@@ -12,42 +12,52 @@ import com.whereguesthome.pojo.User;
 import com.whereguesthome.service.UserService;
 
 @Service("userService")
-public class UserServiceImp implements UserService{
-	
+public class UserServiceImp implements UserService {
+
 	@Autowired
 	private UserMapper userMapper;
 
-	
-	
-
 	@Override
 	public int insert(User record) {
-			String md5=md5jdkUtil.getMd5(record.getuPassword());
-			record.setuPassword(md5);
+		String md5 = md5jdkUtil.getMd5(record.getuPassword());
+		record.setuPassword(md5);
 		return userMapper.insert(record);
-		
-	}
-	
-		//×¢²á²éÑ¯Êı¾İ¿âÓÃ»§ÃûÊÇ·ñ´æÔÚ
-		public boolean uname(String uName){
-			 boolean flag=false;
-			List<User> list=userMapper.findAll();
-			for(User users:list){
-				 if(uName.equals(users.getuName())){
-					 flag=true;//ÖØ¸´
-					 break;
-				 }else{
-					 flag=false;//²»ÖØ¸´
-				 }
-			 }
-			 return flag;
-		}
-		
 
+	}
+
+	// ×¢ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½İ¿ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
+	public boolean uname(String uName) {
+		boolean flag = false;
+		List<User> list = userMapper.findAll();
+		for (User users : list) {
+			if (uName.equals(users.getuName())) {
+				flag = true;// ï¿½Ø¸ï¿½
+				break;
+			} else {
+				flag = false;// ï¿½ï¿½ï¿½Ø¸ï¿½
+			}
+		}
+		return flag;
+	}
 
 	@Override
 	public List<User> findAll() {
 		return userMapper.findAll();
+	}
+
+	// æ ¹æ®idåˆ é™¤ç”¨æˆ·
+	@Override
+	public void deleteUserById(Integer id, Model model) {
+		String msg = null;
+		if (id != null) {
+			userMapper.deleteByPrimaryKey(id);
+			msg = "åˆ é™¤æˆåŠŸ";
+			model.addAttribute("msg", msg);
+		} else {
+			msg = "åˆ é™¤å¤±è´¥";
+			model.addAttribute("msg", msg);
+		}
+
 	}
 
 }

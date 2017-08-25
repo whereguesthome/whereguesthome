@@ -17,4 +17,7 @@
 	
 	<!--管理员Service  -->
 	<bean id="adminService" class="com.whereguesthome.service.imp.AdminServiceImp"></bean>
+	
+	<!--购物车的service  -->
+	<bean id = "shopcarService" class="com.whereguesthome.service.imp.ShopcarServiceImp"></bean>
 </beans>
