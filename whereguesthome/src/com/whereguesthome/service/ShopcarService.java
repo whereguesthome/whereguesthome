@@ -8,6 +8,7 @@ import com.whereguesthome.pojo.Shopcar;
  * @author hp1
  *
  */
+
 public interface ShopcarService {
 
 	// 购物车商品列表显示模块
@@ -21,5 +22,6 @@ public interface ShopcarService {
 
 	// 添加商品到购物车
 	public void addShopcar(Shopcar shopcar);
+	
 
 }

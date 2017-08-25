@@ -19,4 +19,10 @@ public interface GoodsService {
 
     //查询所有的商品信息
     List<Goods> selectAll();
+    
+    
+	//用户查看所有商品信息
+    List<Goods> findAll(Integer sId);
+ 	//用户查看单个商品信息
+ 	Goods selectBygId(Integer gId);
 }

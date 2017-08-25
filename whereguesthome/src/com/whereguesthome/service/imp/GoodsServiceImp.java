@@ -44,5 +44,17 @@ public class GoodsServiceImp implements GoodsService {
 	public int updateByPrimaryKeySelective(Goods record) {
 		return goodsMapper.updateByPrimaryKeySelective(record);
 	}
-
+   
+	//用户查看所有商品信息
+	@Override
+	public List<Goods> findAll(Integer  gId) {		
+		
+		return goodsMapper.findAll(gId);
+	}
+	//用户查看单个商品信息
+	@Override
+	public Goods selectBygId(Integer gId) {
+		
+		return goodsMapper.selectBygId(gId);
+	}
 }

@@ -11,6 +11,10 @@
 	<!--会员管理的Service -->
 	<bean id="userService" class="com.whereguesthome.service.imp.UserServiceImp">
 	</bean>
+	<!-- 会员商品浏览的Service -->
+	<bean id="goodsService" class="com.whereguesthome.service.imp.GoodsServiceImp">	
+	</bean>
+	
 	<!--管理员Service  -->
 	<bean id="adminService" class="com.whereguesthome.service.imp.AdminServiceImp"></bean>
 </beans>

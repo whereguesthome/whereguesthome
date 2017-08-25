@@ -5,7 +5,7 @@
 	<head></head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>会员登录</title>
+		<title>会员注册</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
 		<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
@@ -34,6 +34,81 @@ font {
 }
  </style>
 </head>
+<script type="text/javascript">
+function clearPhone(obj) {
+	if (isNaN(obj.value)==true){	
+		obj.value='';
+	 } 
+}
+function clearMail(obj) {
+	obj.value='';
+}
+
+function check(){
+	//得到表单对象
+	var uPhoneObj=document.getElementById("uPhone");
+	var uEmailObj=document.getElementById("uEmail");
+ if((checkPhone(uPhoneObj))&&(checkMail(uEmailObj))){
+		return true;//验证通过
+ }else{	
+	return false;//验证通过
+ }
+}
+function checkPhone(obj){	
+//验证手机号码
+var uPhone=obj.value;
+if(uPhone.length==0||uPhone==null){
+	//alert("手机号码不能为空");
+	document.getElementById("umag").innerHTML="<font color='red'>手机号码不能为空</font>";
+	obj.focus();
+	return false;
+}else if(uPhone.length<11){
+	document.getElementById("umag").innerHTML="<font color='red'>手机号码应为11位</font>";
+	obj.focus();
+	return false;
+}else if(uPhone.length>11){
+	document.getElementById("umag").innerHTML="<font color='red'>手机号码应为11位</font>";
+	obj.focus();
+	return false;
+}else{
+	for(var i=0;i<uPhone.length;i++){
+		var c=uPhone.charAt(i);
+		if(!(c>='0'&&c<='9')){
+			//alert("手机号码只能为数字");
+			document.getElementById("umag").innerHTML="<font color='red'>手机号码只能为数字</font>";
+			obj.focus();
+		return false;
+	}
+   }	
+ }
+   obj.blur();//给用户名对象释放焦点
+  document.getElementById("umag").innerHTML='';
+   return true;
+}
+function checkMail(obj) {
+	//验证邮箱
+	var uEmail=obj.value;
+	if(uEmail==null || uEmail.length==0){
+		//alert("邮箱不能为空");
+		document.getElementById("mag").innerHTML="<font color='red'>邮箱不能为空</font>";
+		obj.focus();//给邮箱对象焦点
+		return false;
+	}else{
+		var index1=uEmail.indexOf('@');
+		var index2=uEmail.lastIndexOf('.');
+		if(index1<=0 || index2==-1 ||index1>index2){
+			//alert("邮箱包含@，.且.在@后面！");
+			document.getElementById("mag").innerHTML="<font color='red'>邮箱包含@，.且.在@后面！</font>";
+			obj.focus();
+			return false;
+		}		
+	}
+	obj.blur();//给用户名对象释放焦点
+	document.getElementById("mag").innerHTML='';
+	return true;//验证通过
+}
+
+</script> 
 <body>
 
 
@@ -111,54 +186,58 @@ font {
 
 
 	<div class="col-md-8" style="background:#fff;padding:40px 80px;margin:30px;border:7px solid #ccc;">
-		<font>会员注册</font>
-		<form class="form-horizontal" style="margin-top:5px;" method="post" action="login.jsp">
+		<font>会员注册   ${users}</font>
+		<form class="form-horizontal" style="margin-top:5px;" method="post" action="regist" onsubmit="return check()">
 			<input type="hidden" name="method" value="regist">
 			 <div class="form-group">
-			    <label for="username" class="col-sm-2 control-label">用户名</label>
+			    <label for="uName" class="col-sm-2 control-label">用户名</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="username" placeholder="请输入用户名" name="username">
+			      <input type="text" class="form-control" id="uName" placeholder="请输入用户名" name="uName">
 			    </div>
 			  </div>
 			   <div class="form-group">
 			    <label for="password" class="col-sm-2 control-label">密码</label>
 			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="password" placeholder="请输入密码" name="password">
+			      <input type="password" class="form-control" id="uPassword" placeholder="请输入密码" name="uPassword">
 			    </div>
-			  </div>
-			   <!--  <div class="form-group">
+			  </div> 
+			    <!-- <div class="form-group">
 			     <label for="confirmpwd" class="col-sm-2 control-label">确认密码</label>
 			    <div class="col-sm-6">
 			      <input type="password" class="form-control" id="confirmpwd" placeholder="请输入确认密码"> 
 			    </div> 
-			  </div> -->
+			  </div>  -->
 			  <div class="form-group">
 			    <label for="email" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-6">
-			      <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+			    <!-- <input type="email" class="form-control" id="uEmail" placeholder="Email" name="uEmail"> -->
+			      <input type="email" class="form-control" id="uEmail"  name="uEmail" onblur="checkMail(this)" onfocus="clearMail(this)" >
+			    <div id="mag" style="display:inline"></div><br>
 			    </div>
 			  </div>
 			 <div class="form-group">
 			    <label for="phone" class="col-sm-2 control-label">手机号</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="phone" placeholder="请输入手机号" name="name">
+			    <!-- <input type="text" class="form-control" id="uPhone" placeholder="请输入手机号" name="uPhone"> -->
+			      <input type="text" class="form-control" id="uPhone" name="uPhone" onblur="checkPhone(this)" onfocus="clearPhone(this)" >
+			    <div id="umag" style="display:inline"></div><br> 
 			    </div>
 			  </div>
 			  <div class="form-group opt">  
 			  <label for="inlineRadio1" class="col-sm-2 control-label">性别</label>  
 			  <div class="col-sm-6">
 			    <label class="radio-inline">
-			  <input type="radio" name="sex" id="inlineRadio1" value="1"> 男
+			  <input type="radio" name="uSex" id="uSex" value="1"> 男
 			</label>
 			<label class="radio-inline">
-			  <input type="radio" name="sex" id="inlineRadio2" value="0"> 女
+			  <input type="radio" name="uSex" id="uSex value="0"> 女
 			</label>
 			</div>
 			  </div>		
 			  <div class="form-group">
 			    <label for="account" class="col-sm-2 control-label">支付账号</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control"  name="account" id="account">		      
+			      <input type="text" class="form-control"  name="uAccount" id="uAccount" placeholder="请输入支付账号">		      
 			    </div>
 			  </div>
 			  
@@ -172,7 +251,7 @@ font {
 			    <img src="${pageContext.request.contextPath}/image/captcha.jhtml"/>
 			    </div> --%>
 			    
-			  </div>
+			  
 			 
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-12"> 
