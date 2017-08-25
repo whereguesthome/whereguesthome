@@ -67,11 +67,4 @@ public class ShopcarServiceImp implements ShopcarService {
 		}
 
 	}
-
-	@Override
-	public void addShopcar(Shopcar shopcar) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
