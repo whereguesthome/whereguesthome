@@ -7,25 +7,25 @@ import org.apache.ibatis.annotations.Update;
 import com.whereguesthome.pojo.Shopcar;
 
 /**
- * ¹ºÎï³µ³Ö¾Ã²ã
+ * è´­ç‰©è½¦Service
  * 
  * @author hp1
  *
  */
 public interface ShopcarMapper {
-	// ¸ù¾İÓÃ»§id²éÑ¯µ±Ç°ÓÃ»§¹ºÂòµÄÉÌÆ·
+	// æ ¹æ®ç”¨æˆ·idæŸ¥è¯¢æ‰€æœ‰å•†å“
 
 	public Shopcar findShopcarList(Integer id);
 
-	// ¸ù¾İÉÌÆ·idÉ¾³ıµ±Ç°ÉÌÆ·
+	// æ ¹æ®ç”¨æˆ·id,å•†å“idåˆ é™¤å•†å“
 	@Delete("DELETE FROM shopcar WHERE u_id=#{uid} and g_id=#{gid}")
 	public int deleteShopcarById(Integer uid, Integer gid);
 
-	// ¸ù¾İidĞŞ¸ÄÉÌÆ·ÊıÁ¿
+	// ä¿®æ”¹å•†å“ä¿¡æ¯
 	@Update("UPDATE shopcar SET s_num=#{s_num} WHERE u_id=#{u_id} AND g_id=#{g_id}")
 	public int updateShopcarById(Shopcar shopcar);
 
-	// Ìí¼ÓÉÌÆ·µ½¹ºÎï³µ
+	// æ·»åŠ å•†å“ï³µ
 	@Insert("INSERT INTO shopcar VALUES(#{u_id},#{g_id},#{s_num})")
 	public boolean insertShopcar(Shopcar shopcar);
 

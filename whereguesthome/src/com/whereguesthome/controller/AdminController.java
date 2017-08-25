@@ -14,6 +14,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.whereguesthome.pojo.Admin;
 import com.whereguesthome.service.AdminService;
 
+/**
+ * @author GongZhen
+ *
+ * @date 2017年8月25日
+ */
 @Controller
 @RequestMapping("admin")
 @SessionAttributes("a")
@@ -31,7 +36,7 @@ public class AdminController {
 			return "admin/home";
 			
 		}else{
-			model.addAttribute("a", "鐧诲綍澶辫触");
+			model.addAttribute("a", "密码或用户名错误");
 			return "admin/index";
 		}
 	}
@@ -45,16 +50,19 @@ public class AdminController {
         return "admin/index";
     }
 	
+	//请求登录页面
 	@RequestMapping(value="/shouye")
 	public String denglu(){
         return "admin/index";
     }
 	
+	//管理员界面顶部界面
 	@RequestMapping(value="topa",method=RequestMethod.GET)
 	public String top(){
 		return "admin/top";
 	}
 	
+	//管理员界面左侧界面
 	@RequestMapping(value="lefta",method=RequestMethod.GET)
 	public String left(){
 		return "admin/left";

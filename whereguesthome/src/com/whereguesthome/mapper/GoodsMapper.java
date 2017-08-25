@@ -7,8 +7,14 @@ import org.apache.ibatis.annotations.Select;
 
 import com.whereguesthome.pojo.Goods;
 
+/**
+ * @author GongZhen
+ *
+ * @date 2017年8月25日
+ */
 public interface GoodsMapper {
 	
+
 	//根据ID删除商品信息
     int deleteByPrimaryKey(Integer gId);
 

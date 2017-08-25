@@ -1,9 +1,13 @@
 package com.whereguesthome.service;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
+
 import com.whereguesthome.pojo.Shopcar;
 
 /**
- * ¹ºÎï³µÒµÎñÂß¼­
+ * ï¿½ï¿½ï¿½ï³µÒµï¿½ï¿½ï¿½ß¼ï¿½
  * 
  * @author hp1
  *
@@ -11,17 +15,22 @@ import com.whereguesthome.pojo.Shopcar;
 
 public interface ShopcarService {
 
-	// ¹ºÎï³µÉÌÆ·ÁĞ±íÏÔÊ¾Ä£¿é
-	public Shopcar displayShopcar();
+	// æ˜¾ç¤ºå½“å‰ç”¨æˆ·æ‰€æœ‰å•†å“ä¿¡æ¯
+	public void displayShopcar(Integer id, Model model);
 
-	// °ÑÉÌÆ·´Ó¹ºÎï³µÉ¾³ı³öÈ¥
-	public int deleteShopcarById(Integer uid, Integer gid);
+	// åœ¨è´­ç‰©è½¦é‡Œç§»é™¤ä¸€æ¡å•†å“ä¿¡æ¯
+	void deleteShopcarById(Integer uid, Integer gid, Model model);
 
-	// ĞŞ¸Ä¹ºÎï³µµ±Ç°ÉÌÆ·µÄÊıÁ¿
-	public int modifyShopcarIndex(Shopcar shopcar);
+	// ä¿®æ”¹å•†å“çš„æ•°é‡
+	void modifyShopcarIndex(Shopcar shopcar);
 
-	// Ìí¼ÓÉÌÆ·µ½¹ºÎï³µ
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ã€‚ï³µ
 	public void addShopcar(Shopcar shopcar);
 	
+
+	// æ·»åŠ å•†å“åˆ°è´­ç‰©è½¦ï³µ
+	void addShopcar(Shopcar shopcar, HttpSession session, Model model);
+     
 
 }

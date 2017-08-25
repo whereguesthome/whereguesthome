@@ -17,7 +17,7 @@ import com.whereguesthome.service.GoodsService;
 public class UserGoodsController {
 	@Autowired
 	private GoodsService goodsService;
-	
+	//用户查询所有商品信息
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public String findAll(Model m,Integer gId){
 		
