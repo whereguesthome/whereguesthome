@@ -22,5 +22,5 @@ public interface UserService {
 	 * @param model
 	 *            模型
 	 */
-	void deleteUserById(Integer id, Model model);
+	boolean deleteUserById(Integer id, Model model);
 }

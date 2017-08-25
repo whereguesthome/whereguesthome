@@ -47,17 +47,26 @@ public class UserServiceImp implements UserService {
 
 	// 根据id删除用户
 	@Override
-	public void deleteUserById(Integer id, Model model) {
+	public boolean deleteUserById(Integer id, Model model) {
 		String msg = null;
+		boolean flag = false;
 		if (id != null) {
-			userMapper.deleteByPrimaryKey(id);
-			msg = "删除成功";
-			model.addAttribute("msg", msg);
+			int a = userMapper.deleteByPrimaryKey(id);
+			if (a == 0) {
+				msg = "删除失败";
+				model.addAttribute("msg", msg);
+				flag = false;
+			} else if (a > 0) {
+				msg = "删除成功";
+				model.addAttribute("msg", msg);
+				flag = true;
+			}
 		} else {
-			msg = "删除失败";
+			msg = "用户id不存在";
 			model.addAttribute("msg", msg);
+			flag = false;
 		}
-
+		return flag;
 	}
 
 }
