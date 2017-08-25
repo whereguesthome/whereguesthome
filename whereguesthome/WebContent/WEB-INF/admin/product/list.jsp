@@ -136,7 +136,7 @@
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												>
 												<c:if test="${p.gStatus==1 }">未下架</c:if>
-												<c:if test="${p.gStatust!=1 }">已下架</c:if>
+												<c:if test="${p.gStatust==2 }">已下架</c:if>
 											</td>
 											
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"

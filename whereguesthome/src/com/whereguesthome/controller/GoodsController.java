@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.whereguesthome.pojo.Goods;
 import com.whereguesthome.service.GoodsService;
 
+/**
+ * @author GongZhen
+ *
+ * @date 2017年8月25日
+ */
 @Controller
 @RequestMapping("admin/product")
 public class GoodsController {
