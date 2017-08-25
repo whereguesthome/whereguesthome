@@ -1,5 +1,9 @@
 package com.whereguesthome.service;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
+
 import com.whereguesthome.pojo.Shopcar;
 
 /**
@@ -11,15 +15,15 @@ import com.whereguesthome.pojo.Shopcar;
 public interface ShopcarService {
 
 	// 显示当前用户所有商品信息
-	public Shopcar displayShopcar();
+	public void displayShopcar(Integer id, Model model);
 
 	// 在购物车里移除一条商品信息
-	public int deleteShopcarById(Integer uid, Integer gid);
+	void deleteShopcarById(Integer uid, Integer gid, Model model);
 
-	//修改商品的数量
-	public int modifyShopcarIndex(Shopcar shopcar);
+	// 修改商品的数量
+	void modifyShopcarIndex(Shopcar shopcar);
 
 	// 添加商品到购物车ﳵ
-	public void addShopcar(Shopcar shopcar);
+	void addShopcar(Shopcar shopcar, HttpSession session, Model model);
 
 }
