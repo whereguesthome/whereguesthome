@@ -3,23 +3,23 @@ package com.whereguesthome.service;
 import com.whereguesthome.pojo.Shopcar;
 
 /**
- * ¹ºÎï³µÒµÎñÂß¼­
+ * ï¿½ï¿½ï¿½ï³µÒµï¿½ï¿½ï¿½ß¼ï¿½
  * 
  * @author hp1
  *
  */
 public interface ShopcarService {
 
-	// ¹ºÎï³µÉÌÆ·ÁĞ±íÏÔÊ¾Ä£¿é
+	// æ˜¾ç¤ºå½“å‰ç”¨æˆ·æ‰€æœ‰å•†å“ä¿¡æ¯
 	public Shopcar displayShopcar();
 
-	// °ÑÉÌÆ·´Ó¹ºÎï³µÉ¾³ı³öÈ¥
+	// åœ¨è´­ç‰©è½¦é‡Œç§»é™¤ä¸€æ¡å•†å“ä¿¡æ¯
 	public int deleteShopcarById(Integer uid, Integer gid);
 
-	// ĞŞ¸Ä¹ºÎï³µµ±Ç°ÉÌÆ·µÄÊıÁ¿
+	//ä¿®æ”¹å•†å“çš„æ•°é‡
 	public int modifyShopcarIndex(Shopcar shopcar);
 
-	// Ìí¼ÓÉÌÆ·µ½¹ºÎï³µ
+	// æ·»åŠ å•†å“åˆ°è´­ç‰©è½¦ï³µ
 	public void addShopcar(Shopcar shopcar);
 
 }
