@@ -1,4 +1,6 @@
 package com.whereguesthome.service;
+import java.util.List;
+
 import org.springframework.ui.Model;
 
 import com.whereguesthome.pojo.Goods;
@@ -19,4 +21,13 @@ public interface GoodsService {
 
     //查询所有的商品信息
     void selectAll(Model model);
+
+    List<Goods> selectAll();
+    
+	//用户查看所有商品信息
+    List<Goods> findAll(Integer sId);
+ 	//用户查看单个商品信息
+    
+ 	Goods selectBygId(Integer gId);
+
 }

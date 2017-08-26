@@ -112,34 +112,34 @@ font {
 	
 	<div class="col-md-5">
 				<div style="width:440px;border:1px solid #E7E7E7;padding:20px 0 20px 30px;border-radius:5px;margin-top:60px;background:#fff;">
-				<font>会员登录</font>
+				<font>会员登录  ${users}</font>
 
 				<div>&nbsp;</div>
-<form class="form-horizontal" action="index.jsp" method="post">
+<form class="form-horizontal" action="login" method="post">
 	<input type="hidden" name="method" value="login">
   
  <div class="form-group">
     <label for="username" class="col-sm-2 control-label">用户名</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="username" placeholder="请输入用户名" name="username">
+      <input type="text" class="form-control" id="uName" placeholder="请输入用户名" name="uName">
     </div>
   </div>
    <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
     <div class="col-sm-6">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码" name="password">
+      <input type="password" class="form-control" id="uPassword" placeholder="请输入密码" name="uPassword">
     </div>
   </div>
-   <div class="form-group">
+   <%-- <div class="form-group">
         <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" id="inputPassword3" placeholder="请输入验证码">
-    </div>
+    </div> 
     <div class="col-sm-3">
       <img src="${pageContext.request.contextPath}/image/captcha.jhtml"/>
-    </div>
-    
-  </div>
+    </div>    
+  </div>  --%>
+  
    <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <div class="checkbox">

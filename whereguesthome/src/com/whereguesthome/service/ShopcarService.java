@@ -12,6 +12,7 @@ import com.whereguesthome.pojo.Shopcar;
  * @author hp1
  *
  */
+
 public interface ShopcarService {
 
 	// 显示当前用户所有商品信息

@@ -94,5 +94,24 @@ public class GoodsServiceImp implements GoodsService {
 		return a;
 		
 	}
+   
+	//用户查看所有商品信息
+	@Override
+	public List<Goods> findAll(Integer  gId) {		
+		
+		return goodsMapper.findAll(gId);
+	}
+	
+	//用户查看单个商品信息
+	@Override
+	public Goods selectBygId(Integer gId) {
+		
+		return goodsMapper.selectBygId(gId);
+	}
 
+	@Override
+	public List<Goods> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
