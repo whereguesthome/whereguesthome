@@ -27,16 +27,15 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
+	//管理员登录界面
 	@RequestMapping(value="/denglu",method=RequestMethod.POST)
 	public String findById(Model model,String aName,Admin admin){
 		
-		Admin a = adminService.selectByNmae(aName);
-		if(a.getaName().equals(admin.getaName())&&a.getaPasswor().equals(admin.getaPasswor())){
-			model.addAttribute("a", a);
+		boolean flag = adminService.selectByNmae(model, aName, admin);
+		if(flag){
 			return "admin/home";
 			
 		}else{
-			model.addAttribute("a", "密码或用户名错误");
 			return "admin/index";
 		}
 	}

@@ -1,22 +1,22 @@
 package com.whereguesthome.service;
+import org.springframework.ui.Model;
 
-import java.util.List;
 import com.whereguesthome.pojo.Goods;
 
 public interface GoodsService {
 	    
 	//根据ID删除商品信息
-    int deleteByPrimaryKey(Integer gId);
+    int deleteByPrimaryKey(Integer gId,Model model);
 
     //插入商品信息
-    int insertSelective(Goods record);
+    int insertSelective(Goods record,Model model);
 
     //根据ID查询商品信息
-    Goods selectByPrimaryKey(Integer gId);
+    void selectByPrimaryKey(Integer gId,Model model);
 
-    //根据ID更新商品信息
-    int updateByPrimaryKeySelective(Goods record);
+    //更新商品信息
+    int updateByPrimaryKeySelective(Goods record,Model model);
 
     //查询所有的商品信息
-    List<Goods> selectAll();
+    void selectAll(Model model);
 }

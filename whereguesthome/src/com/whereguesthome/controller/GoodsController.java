@@ -1,12 +1,8 @@
 package com.whereguesthome.controller;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.whereguesthome.pojo.Goods;
 import com.whereguesthome.service.GoodsService;
 
 /**
@@ -25,8 +21,7 @@ public class GoodsController {
 	@RequestMapping(value="/")
 	public String findAll(Model model){
 		
-		List<Goods> goodslist = goodsService.selectAll();
-		model.addAttribute("goodslist", goodslist);
+		goodsService.selectAll(model);
 		return "admin/product/list";
 	}
 
