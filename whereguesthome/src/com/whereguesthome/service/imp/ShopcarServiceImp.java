@@ -44,6 +44,7 @@ public class ShopcarServiceImp implements ShopcarService {
 	}
 
 	// 修改商品的数量
+	//只能添加商品数量
 	@Override
 	public void modifyShopcarIndex(Shopcar shopcar) {
 		if (shopcar != null) {
