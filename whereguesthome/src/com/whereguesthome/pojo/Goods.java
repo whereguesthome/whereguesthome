@@ -1,7 +1,7 @@
 package com.whereguesthome.pojo;
 
 import java.util.Date;
-
+//商品实体类
 public class Goods {
     private Integer gId;
 
