@@ -19,6 +19,7 @@ public class AdminServiceImp implements AdminService{
 	private AdminMapper adminMapper;
 	
 	//查询管理员信息,执行登录
+	//测试代码
 	@Override
 	public boolean selectByNmae(Model model, String aName, Admin admin) {
 		boolean flag = false;
