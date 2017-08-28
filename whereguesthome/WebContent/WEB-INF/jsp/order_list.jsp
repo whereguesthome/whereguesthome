@@ -62,7 +62,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">首页</a>
+							<a class="navbar-brand" href="index">首页</a>
 						</div>
 
 						<!-- Collect the nav links, forms, and other content for toggling -->

@@ -34,4 +34,15 @@ public interface GoodsService {
     
  	Goods selectBygId(Integer gId);
 
+	 //根据商品类型s_Id查询记录总数	
+	int getTotalRecord(Integer sId)throws Exception;
+	/**
+	 * 根据商品类型sId进行分页
+	 * @param tid 商品类型id
+	 * @param StartIndex 开始索引
+	 * @param pageSize	每页记录数
+	 * @return
+	 * @throws Exception
+	 */
+	List<Goods> getByPage(Integer sId, Integer StartIndex, Integer pageSize) throws Exception;
 }

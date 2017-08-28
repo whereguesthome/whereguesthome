@@ -28,66 +28,8 @@
 
 	<body>
 
-		
-			<!--
-            	时间：2015-12-30
-            	描述：菜单栏
-            -->
-			<div class="container-fluid">
-				<div class="col-md-4">
-					<img src="${pageContext.request.contextPath}/img/fanke2.png" />
-				</div>
-				<div class="col-md-5">
-					<img src="${pageContext.request.contextPath}/img/header.png" />
-				</div>
-				<div class="col-md-3" style="padding-top:20px">
-					<ol class="list-inline">
-						<li><a href="login.jsp">登录</a></li>
-						<li><a href="register.jsp">注册</a></li>
-						<li><a href="cart.jsp">购物车</a></li>
-					</ol>
-				</div>
-			</div>
-			<!--
-            	时间：2015-12-30
-            	描述：导航条
-            -->
-			<div class="container-fluid">
-				<nav class="navbar navbar-inverse">
-					<div class="container-fluid">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="index">首页</a>
-						</div>
-
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav">
-								<li class="active"><a href="product_list.jsp">女性服装<span class="sr-only">(current)</span></a></li>
-								<li><a href="#">电脑办公</a></li>
-								<li><a href="#">电脑办公</a></li>
-								<li><a href="#">电脑办公</a></li>
-							</ul>
-							<form class="navbar-form navbar-right" role="search">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Search">
-								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
-							</form>
-
-						</div>
-						<!-- /.navbar-collapse -->
-					</div>
-					<!-- /.container-fluid -->
-				</nav>
-			</div>
-
+		   <%@include file="/WEB-INF/jsp/head.jsp" %>
+			
 
 		<div class="container">
 			<div class="row">
@@ -98,7 +40,7 @@
 
 				<div style="margin:0 auto;width:950px;">
 					<div class="col-md-6">
-						<img style="opacity: 1;width:400px;height:350px;" title="" class="medium" src="${pageContext.request.contextPath}/${g.gPhoto}">
+						<img style="opacity: 1;width:400px;height:350px;" title="" class="medium" src="${pageContext.request.contextPath}/${goodsBygId.gPhoto}">
 					</div>
 
 					<div class="col-md-6">
@@ -110,9 +52,9 @@
 						<div style="margin:10px 0 10px 0;">原价:<del>￥${ goodsBygId.gPrice}</del>
 						</div>
 
-						<div style="margin:10px 0 10px 0;">促销: <strong style="color:#ef0101;">￥：${ goodsBygId.gSaleprice}</strong>限时抢购 </div>
+						<div style="margin:10px 0 10px 0;">促销: <strong style="color:#ef0101;">￥：${ goodsBygId.gSaleprice}</strong>  限时抢购 </div>
 
-						<div style="padding:10px;border:1px solid #e7dbb1;width:330px;margin:15px 0 10px 0;;background-color: #fffee6;">
+					<div style="padding:10px;border:1px solid #e7dbb1;width:330px;margin:15px 0 10px 0;;background-color: #fffee6;"> 
 							<!-- <div style="margin:5px 0 10px 0;">白色</div> -->
 
 							<div style="border-bottom: 1px solid #faeac7;margin-top:20px;padding-left: 10px;">购买数量:
@@ -131,9 +73,9 @@
 						<strong>商品介绍：${ goodsBygId.gDescribes}</strong>
 					</div>
 
-					<div>
+					<%-- <div>
 						<img src="${pageContext.request.contextPath}/image/r___________renleipic_01/bigPic139f030b-d68b-41dd-be6d-b94cc568d3c5.jpg">
-					</div>
+					</div> --%>
 
 					<div style="background-color:#d3d3d3;width:930px;padding:10px 10px;margin:10px 0 10px 0;">
 						<strong>商品描述：${ goodsBygId.gContents}</strong>

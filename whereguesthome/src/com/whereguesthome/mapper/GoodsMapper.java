@@ -33,12 +33,17 @@ public interface GoodsMapper {
     		+ "s_id sId,g_status gStatus from goods")
     List<Goods> selectAll();
     
-  //用户根据商品分类s_id查询所以信息
+    
+  //根据商品分类s_id查询所以信息
     @Select("select g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId from goods where s_id =#{sId}")
-    List<Goods> findAll(@Param("sId")Integer  s_id);
-   
-   
-    //用户根据商品g_id查询单个商品的所有信息
+    List<Goods> findAll(@Param("sId")Integer  sId);
+      
+    //根据商品g_id查询单个商品的所有信息
     @Select("select g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId from goods where g_id =#{gId}")
     Goods selectBygId(@Param("gId")Integer gId);
+    	
+   int getTotalRecord(@Param("sId") Integer sId);
+	
+	List<Goods> getByPage(@Param("sId") Integer sId,@Param("StartIndex")Integer StartIndex,
+			@Param("pageSize")Integer pageSize);
 }

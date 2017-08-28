@@ -164,10 +164,25 @@ public class GoodsServiceImp implements GoodsService {
 		
 		return goodsMapper.selectBygId(gId);
 	}
+	@Override
+	public int getTotalRecord(Integer sId) throws Exception {
+		
+		return goodsMapper.getTotalRecord(sId);
+	}
+
+
+	@Override
+	public List<Goods> getByPage(Integer sId, Integer StartIndex, Integer pageSize) throws Exception {
+		
+		return goodsMapper.getByPage(sId, StartIndex, pageSize);
+	}
 
 	@Override
 	public List<Goods> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+
 }

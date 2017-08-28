@@ -28,5 +28,9 @@ public interface SortMapper {
     //查询所有的分类信息
     @Select("select s_id sId,s_name sName from sort")
     List<Sort> SelectAll();
+    
+    //查询所以信息
+    @Select("select s_id sId,s_name sName from sort")
+    List<Sort> findAll();
 
 }

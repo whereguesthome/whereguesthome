@@ -1,4 +1,6 @@
 package com.whereguesthome.service;
+import java.util.List;
+
 import org.springframework.ui.Model;
 import com.whereguesthome.pojo.Sort;
 
@@ -23,5 +25,9 @@ public interface SortService {
     
     //查询所有的分类信息
     void SelectAll(Model model);
-   
+    
+   //用户查看所以商品分类信息
+	List<Sort> findAll();
+
+	String findJosn() throws Exception;
 }
