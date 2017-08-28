@@ -52,7 +52,7 @@ public class GoodsServiceImp implements GoodsService {
 		return a;
 	}
 
-	// 添加商品信息测
+	// 添加商品信息测啊
 	@Override
 	public int insertSelective(HttpServletRequest request,MultipartFile photo,Goods record,Model model) throws IOException{
 			String msg = null;
