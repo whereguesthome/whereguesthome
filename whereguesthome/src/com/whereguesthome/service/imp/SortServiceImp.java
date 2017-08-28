@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.google.gson.Gson;
 import com.whereguesthome.mapper.SortMapper;
 import com.whereguesthome.pojo.Sort;
 import com.whereguesthome.service.SortService;
@@ -120,6 +121,22 @@ public class SortServiceImp implements SortService{
 			model.addAttribute("msg",msg);
 		}
 				
+	}
+
+	
+	@Override
+	public List<Sort> findAll() {
+		return sortMapper.findAll();
+	}
+	//将商品类型集合转成json字符串
+	@Override
+	public String findJosn() throws Exception {
+		List<Sort> list = findAll();
+		if (list!=null && list.size()>0) {
+			Gson gson=new Gson();
+			return gson.toJson(list).toString();
+		}
+		return null;
 	}
 
 }

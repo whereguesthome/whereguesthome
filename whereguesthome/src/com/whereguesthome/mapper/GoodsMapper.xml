@@ -161,4 +161,19 @@
       g_status = #{gStatus,jdbcType=INTEGER}
     where g_id = #{gId,jdbcType=INTEGER}
   </update>
+  
+  
+  
+  	<select id="getByPage" resultType="com.whereguesthome.pojo.Goods">
+		SELECT  g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId 
+		FROM goods WHERE s_id=#{sId} LIMIT #{StartIndex},#{pageSize}
+		
+	</select>
+	
+  <select id="getTotalRecord" resultType="int">
+  select count(*) from 
+  goods where s_id =#{sId}
+  
+  </select> 
+  
 </mapper>
