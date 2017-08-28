@@ -23,5 +23,5 @@ public interface SortService {
     
     //查询所有的分类信息
     void SelectAll(Model model);
-    
+   
 }

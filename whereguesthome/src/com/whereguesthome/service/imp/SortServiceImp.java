@@ -3,6 +3,7 @@ package com.whereguesthome.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.whereguesthome.mapper.SortMapper;
@@ -14,6 +15,7 @@ import com.whereguesthome.service.SortService;
  *
  * @date 2017年8月25日
  */
+@Service
 public class SortServiceImp implements SortService{
 
 	@Autowired
@@ -99,7 +101,7 @@ public class SortServiceImp implements SortService{
 		}else{
 			msg = "更新失败！";
 			model.addAttribute("msg", msg);
-			a = 1;
+			a = 0;
 		}
 		return a;
 	}
