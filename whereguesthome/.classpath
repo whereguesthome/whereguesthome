@@ -10,7 +10,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjweaver-1.6.9.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
@@ -49,7 +48,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-core-2.9.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis-3.3.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis-spring-1.2.3.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.18.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/netty-all-4.0.10.Final.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc6-11.2.0.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/persistence-api-1.0.jar"/>
