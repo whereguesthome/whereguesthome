@@ -100,7 +100,7 @@
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
 												<c:if test="${g.gPhoto !=null }">
-												<img src="/pho/${g.gPhoto}" width="100" height="100"/></c:if>
+												<img src="/img/${g.gPhoto}" width="100" height="100"/></c:if>
 											</td>
 											
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"

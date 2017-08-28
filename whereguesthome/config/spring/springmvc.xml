@@ -34,23 +34,20 @@
 	<!-- 开启组件扫描 -->
 	<context:component-scan base-package="com.whereguesthome.controller,com.whereguesthome.service,com.whereguesthome.imp"/>
 	
-	<!-- 处理适配器 -->
-	<!-- <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/> -->
-	
-	<!-- 另一种非注解的处理适配器 -->
-	<!-- <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"></bean> -->
-	
 	<!-- 视图解析器 -->
 	 <bean  
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
     </bean>  
-    <!-- <bean  
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
-        <property name="prefix" value="/admin/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>  -->
+   
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"/>
+		<!-- 最大内存大小 -->
+		<property name="maxInMemorySize" value="10240"/>
+		<!-- 最大文件大小，-1为不限制大小 -->
+		<property name="maxUploadSize" value="-1"/>
+	</bean>
     
      <mvc:resources location="/img/" mapping="/img/**"/> 
     <mvc:resources location="/image/" mapping="/image/**"/>
