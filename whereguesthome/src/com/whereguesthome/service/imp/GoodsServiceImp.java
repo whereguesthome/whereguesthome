@@ -182,7 +182,16 @@ public class GoodsServiceImp implements GoodsService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+    
+	//模糊查询
+	@Override
+	public void findParam(String gName ,Model m) {
+		if(gName !=null && gName !=""){
+			gName="%"+gName+"%";
+		}
+     List<Goods> list=goodsMapper.findParam(gName);		
+     m.addAttribute("list", list);
+	}
 	
 
 }

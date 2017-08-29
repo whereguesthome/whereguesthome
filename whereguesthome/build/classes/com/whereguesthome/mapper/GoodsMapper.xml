@@ -176,4 +176,14 @@
   
   </select> 
   
+  <select id="findParam" resultMap="BaseResultMap">
+     select g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId  from goods
+     <where>
+      1=1
+      <if test="gName !=null and gName != ''">
+       and g_name like #{gName}
+      </if>      
+     </where>
+   </select>
+   
 </mapper>
