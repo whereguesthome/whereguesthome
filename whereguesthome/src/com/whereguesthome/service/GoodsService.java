@@ -45,4 +45,7 @@ public interface GoodsService {
 	 * @throws Exception
 	 */
 	List<Goods> getByPage(Integer sId, Integer StartIndex, Integer pageSize) throws Exception;
+   
+	//根据商品名称模糊查询
+	void findParam(String gName,Model m);
 }

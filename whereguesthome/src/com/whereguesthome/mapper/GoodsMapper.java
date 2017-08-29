@@ -44,6 +44,10 @@ public interface GoodsMapper {
     	
    int getTotalRecord(@Param("sId") Integer sId);
 	
-	List<Goods> getByPage(@Param("sId") Integer sId,@Param("StartIndex")Integer StartIndex,
+	List<Goods> getByPage(@Param("sId") Integer sId,@Param("StartIndex")Integer StartIndex,			
 			@Param("pageSize")Integer pageSize);
+	
+	//商品的模糊查询
+		List<Goods> findParam(@Param("gName") String gName);
+		
 }

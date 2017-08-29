@@ -57,7 +57,7 @@
 								
 								
 							</ul>
-							<form class="navbar-form navbar-right" role="search" action="">
+							<form class="navbar-form navbar-right" role="search" action="list">
 								<div class="form-group">
 									<input type="text" class="form-control" placeholder="Search">
 								</div>
