@@ -25,7 +25,7 @@
 		d = new dTree('d');
 		d.add('01',-1,'系统菜单树');
 		d.add('0101','01','用户管理','','','mainFrame');
-		d.add('010101','0101','用户管理','${pageContext.request.contextPath}/userAdmin_findAll.action?page=1','','mainFrame');
+		d.add('010101','0101','用户管理','${pageContext.request.contextPath}/admin/user/','','mainFrame');
 		d.add('0102','01','分类管理','','','mainFrame');
 		d.add('010201','0102','分类管理','${pageContext.request.contextPath}/admin/category/','','mainFrame');
 		d.add('0104','01','商品管理');
