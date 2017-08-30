@@ -52,8 +52,7 @@ font {
 				</div>
 				<div class="col-md-3" style="padding-top:20px">
 					<ol class="list-inline">
-						<li><a href="login.jsp">登录</a></li>
-						<li><a href="register.jsp">注册</a></li>
+						<li><a href="zhuc">注册</a></li>
 						<li><a href="cart.jsp">购物车</a></li>
 					</ol>
 				</div>

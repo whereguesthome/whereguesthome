@@ -1,10 +1,14 @@
 package com.whereguesthome.service;
 
+
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
 import com.whereguesthome.pojo.Shopcar;
+
 
 /**
  * ���ﳵҵ���߼�
@@ -16,7 +20,7 @@ import com.whereguesthome.pojo.Shopcar;
 public interface ShopcarService {
 
 	// 显示当前用户所有商品信息
-	public void displayShopcar(Integer id, Model model);
+	public void displayShopcar(Model model,HttpSession session);
 
 	// 在购物车里移除一条商品信息
 	void deleteShopcarById(Integer uid, Integer gid, Model model);
@@ -25,6 +29,6 @@ public interface ShopcarService {
 	void modifyShopcarIndex(Shopcar shopcar);
 
 	// 添加商品到购物车ﳵ
-	void addShopcar(Shopcar shopcar, HttpSession session, Model model);
+	void addShopcar(Shopcar shopcar, HttpSession session,HttpServletResponse response);
 
 }

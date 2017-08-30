@@ -23,7 +23,6 @@ public class UserGoodsController {
 	//用户查询所有商品信息
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public String findAll(Model m,Integer gId){
-		
 		List<Goods> goods1=goodsService.findAll(1);	
 		List<Goods> goods2=goodsService.findAll(2);	
 		
@@ -41,21 +40,21 @@ public class UserGoodsController {
 	}
 	
 	//商品分页
-		@RequestMapping(value="product")
-		public String list(Model m,Integer sId,HttpServletRequest req) throws Exception{
-			PageBean<Goods> pagebean=new PageBean<>();
-			pagebean.setTotalRecord(goodsService.getTotalRecord(sId));
-			pagebean.setPageSize(2);
-	      int pageNumber=1;
-	      if (req.getParameter("pageNumber")!=null) {
-	    	  pageNumber=Integer.valueOf(req.getParameter("pageNumber"));
-			}
-			
-			pagebean.setPageNumber(pageNumber);
-			int StartIndex=pagebean.getStartIndex();
-			List<Goods> list=goodsService.getByPage(sId, StartIndex,pagebean.getPageSize());
-			pagebean.setData(list);
-			m.addAttribute("pagebean", pagebean);
-			return "product_list";
+	@RequestMapping(value="product")
+	public String list(Model m,Integer sId,HttpServletRequest req) throws Exception{
+		PageBean<Goods> pagebean=new PageBean<>();
+		pagebean.setTotalRecord(goodsService.getTotalRecord(sId));
+		pagebean.setPageSize(2);
+      int pageNumber=1;
+      if (req.getParameter("pageNumber")!=null) {
+    	  pageNumber=Integer.valueOf(req.getParameter("pageNumber"));
 		}
+		
+		pagebean.setPageNumber(pageNumber);
+		int StartIndex=pagebean.getStartIndex();
+		List<Goods> list=goodsService.getByPage(sId, StartIndex,pagebean.getPageSize());
+		pagebean.setData(list);
+		m.addAttribute("pagebean", pagebean);
+		return "jsp/product_list";
+	}
 }

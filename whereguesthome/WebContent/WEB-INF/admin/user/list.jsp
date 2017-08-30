@@ -11,6 +11,11 @@
 	src="${pageContext.request.contextPath}/js/public.js"></script>
 
 </HEAD>
+<script type="text/javascript">
+if ("${msg}" != "") {
+	alert("${msg}")
+}
+</script>
 <body>
 	<br>
 	<form id="Form1" name="Form1"
@@ -110,9 +115,6 @@
 			document.getElementById("curPage1").value = id;
 			document.getElementById("pageForm1").submit();
 		}
-	}
-	if ("${msg}" != "") {
-		alert("${msg}")
 	}
 </script>
 </HTML>

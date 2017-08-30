@@ -1,36 +1,33 @@
 package com.whereguesthome.pojo;
 
-import java.util.List;
-
 public class Shopcar {
+	private Integer u_id;
+	private Integer g_id;
+	private Integer s_num;
+	private User user;// 锟矫伙拷锟斤拷息
+	private Goods goods;
 
-	private int u_id;// 用户id
-	private int g_id;// 商品id
-	private int s_num;// 商品数量
-	private User user;// 用户信息
-	private List<Goods> Goodss;// 商品列表
-
-	public int getU_id() {
+	public Integer getU_id() {
 		return u_id;
 	}
 
-	public void setU_id(int u_id) {
+	public void setU_id(Integer u_id) {
 		this.u_id = u_id;
 	}
 
-	public int getG_id() {
+	public Integer getG_id() {
 		return g_id;
 	}
 
-	public void setG_id(int g_id) {
+	public void setG_id(Integer g_id) {
 		this.g_id = g_id;
 	}
 
-	public int getS_num() {
+	public Integer getS_num() {
 		return s_num;
 	}
 
-	public void setS_num(int s_num) {
+	public void setS_num(Integer s_num) {
 		this.s_num = s_num;
 	}
 
@@ -42,12 +39,12 @@ public class Shopcar {
 		this.user = user;
 	}
 
-	public List<Goods> getList() {
-		return Goodss;
+	public Goods getGoods() {
+		return goods;
 	}
 
-	public void setList(List<Goods> Goodss) {
-		this.Goodss = Goodss;
+	public void setGoods(Goods goods) {
+		this.goods = goods;
 	}
 
 }

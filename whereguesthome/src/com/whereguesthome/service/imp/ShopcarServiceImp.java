@@ -1,11 +1,17 @@
 package com.whereguesthome.service.imp;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import com.whereguesthome.mapper.ShopcarMapper;
 import com.whereguesthome.pojo.Shopcar;
+
 import com.whereguesthome.pojo.User;
 import com.whereguesthome.service.ShopcarService;
 
@@ -16,14 +22,21 @@ import com.whereguesthome.service.ShopcarService;
  *
  */
 public class ShopcarServiceImp implements ShopcarService {
+	@Autowired
 	private ShopcarMapper shopcarMapper;
 
 	// 点击购物车显示当前用户购物车的商品列表
 	@Override
-	public void displayShopcar(Integer id, Model model) {
+	public void displayShopcar(Model model, HttpSession session) {
 		// 从数据库获取当前用户商品的列表
-		Shopcar shopcar = shopcarMapper.findShopcarList(id);
-		model.addAttribute("shopcar", shopcar);
+		// 获取用户session信息
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			model.addAttribute("msg", "请登录");
+		} else {
+			List<Shopcar> shopcar = shopcarMapper.findShopcarList(user.getuId());
+			model.addAttribute("shopcar", shopcar);
+		}
 	}
 
 	// 根据用户id,商品id确定商品的唯一性
@@ -44,7 +57,7 @@ public class ShopcarServiceImp implements ShopcarService {
 	}
 
 	// 修改商品的数量
-	//只能添加商品数量
+	// 只能添加商品数量
 	@Override
 	public void modifyShopcarIndex(Shopcar shopcar) {
 		if (shopcar != null) {
@@ -57,14 +70,22 @@ public class ShopcarServiceImp implements ShopcarService {
 	// 如果登录可以添加到购物车
 	// 如果没有登录不可以添加到购物车
 	@Override
-	public void addShopcar(Shopcar shopcar, HttpSession session, Model model) {
+	public void addShopcar(Shopcar shopcar, HttpSession session, HttpServletResponse response) {
 		// 获取session
+		String msg = null;
 		User user = (User) session.getAttribute("user");
-		if (user == null) {
-			String msg = "用户未登录,不可以添加到购物车";
-			model.addAttribute("msg", msg);
-		} else {
-			shopcarMapper.insertShopcar(shopcar);
+		try {
+			if (user == null) {
+				msg = "用户未登录,不可以添加到购物车";
+				response.getWriter().write(msg);
+			} else {
+				shopcarMapper.insertShopcar(shopcar);
+				msg = "添加购物车成功";
+				response.getWriter().write(msg);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

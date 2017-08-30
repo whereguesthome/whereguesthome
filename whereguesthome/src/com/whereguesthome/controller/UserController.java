@@ -21,7 +21,17 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-
+	
+    //用户登陆页面
+	@RequestMapping(value="/dlu", method = RequestMethod.GET)
+	public String login() {
+		return "jsp/login";
+	}
+	//用户注册页面
+	@RequestMapping(value="/zhuc", method = RequestMethod.GET)
+	public String register() {
+		return "jsp/register";
+	}
 	// 用户注册
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	public String insert(User record, HttpServletRequest request) {
@@ -45,7 +55,7 @@ public class UserController {
 
 	}
 
-	// 用户登录
+	// 用户登录验证
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String findAll(String uName, String uPassword, Model m, HttpServletRequest request) {
 		List<User> list = userService.findAll();
@@ -53,21 +63,21 @@ public class UserController {
 	  String md5=md5jdkUtil.getMd5(uPassword);
 		for (User users : list) {
 			if (users.getuName().equals(uName) && users.getuPassword().equals(md5)) {				
-				/*
-				 * request.getSession().setAttribute("user",users)
-				 * ; @SessionAttributes配置后，原始的request获取ssesion存放数据失效
-				 */
-				// 登录成功保存用户登录状态
-				m.addAttribute("user", users);
+				  request.getSession().setAttribute("user",users);
+					 /* ; @SessionAttributes配置后，原始的request获取ssesion存放数据失效*/
+					// 登录成功保存用户登录状态							
 				flag = true;
-				return "jsp/index";
+                break;
+				
+			}else{
+				flag = false;
 			}
+		   }if (flag ) {			  
+			   return "redirect:/jsp/index";
+		}else{
+			m.addAttribute("users", "用户名或密码错误");
+			return "jsp/login";	
 		}
-		if (flag = false) {
-			m.addAttribute("user", "用户名或密码错误");
-			return "jsp/login";
-		}
-		return null;
 
 	}
 
