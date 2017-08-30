@@ -1,27 +1,20 @@
 package com.whereguesthome.service.imp;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.whereguesthome.mapper.GoodsMapper;
 import com.whereguesthome.mapper.SortMapper;
 import com.whereguesthome.pojo.Goods;
-
-import com.whereguesthome.pojo.GoodsSort;
 import com.whereguesthome.pojo.PageBean;
-
 import com.whereguesthome.pojo.Sort;
 import com.whereguesthome.service.GoodsService;
+import com.whereguesthome.upphoto.UpPhoto;
 
 @Service
 public class GoodsServiceImp implements GoodsService {
@@ -61,29 +54,12 @@ public class GoodsServiceImp implements GoodsService {
 	// 添加商品信息测啊
 	@Override
 	public int insertSelective(HttpServletRequest request,MultipartFile photo,Goods record,Model model) throws IOException{
-			String msg = null;
-			String originalFilename = photo.getOriginalFilename();  
-	        //上传图片  
-	        if(photo!=null && originalFilename!=null && originalFilename.length()>0){   
-	       
-	        //存储图片的物理路径  
-	        String pic_path =request.getSession().getServletContext().getRealPath("/")+ "img/";
-
-	        System.out.println("lujing+++++++++"+pic_path);
-	        
-	        //新的图片名称  
-	        String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));  
-	        
-	        //新图片  
-	        File newFile = new File(pic_path+newFileName);  
-	        
-	        //将内存中的数据写入磁盘  
-	        photo.transferTo(newFile);    
-	        
-	        //将新图片名称写到itemsCustom中  
-	        record.setgPhoto(newFileName);
-	              
-	        }  
+			
+		   String msg = null;
+			//调用上传图片的方法
+		   
+		   UpPhoto.uppircute(record, photo, request);
+		   
 	       String status1 = request.getParameter("is_status");
 	       System.out.println("---------------------状态---------"+status1);
 	       
@@ -121,7 +97,7 @@ public class GoodsServiceImp implements GoodsService {
  
 	}
 
-	// 根据ID查询商品信息
+	// 编辑商品：根据ID查询商品信息
 	@Override
 	public void selectByPrimaryKey(Integer gId,Model model) {
 		Goods goods = goodsMapper.selectByPrimaryKey(gId);
@@ -139,13 +115,33 @@ public class GoodsServiceImp implements GoodsService {
 		}
 	}
 
-	// 根据ID更新商品信息
+	// 更新商品信息
 	@Override
-	public int updateByPrimaryKeySelective(Goods record,Model model) {
+	public int updateByPrimaryKeySelective(HttpServletRequest request,Goods record,Model model,MultipartFile photo) throws IllegalStateException, IOException {
+		
 		String msg = null;
 		int a = 0;
 		
+		String status = request.getParameter("is_status");
+		
+		if(status.equals("1")){
+			record.setgStatus(1);
+		}else{
+			record.setgStatus(2);
+		}
+		
+		String  s= request.getParameter("fenlei");
+		
+		 for(Sort sort:sortMapper.SelectAll()){
+	    	   if(sort.getsName().equals(s)){
+	    		   record.setsId(sort.getsId());
+	    		   break;
+	    	   }
+		 }
+		 
+		 UpPhoto.uppircute(record, photo, request);
 		int i = goodsMapper.updateByPrimaryKeySelective(record);
+		
 		
 		if(i>0){
 			msg= "更新成功！";
@@ -157,7 +153,6 @@ public class GoodsServiceImp implements GoodsService {
 			a = 0;
 		}
 		return a;
-		
 	}
    
 	//用户查看所有商品信息
@@ -227,7 +222,6 @@ public class GoodsServiceImp implements GoodsService {
 		pagebean.setData(listGoods);
 		m.addAttribute("pagebean", "pagebean");
 	}
-
 	
 	
 	}

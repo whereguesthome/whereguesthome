@@ -1,16 +1,12 @@
 package com.whereguesthome.service;
+
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.whereguesthome.pojo.Goods;
-import com.whereguesthome.pojo.GoodsSort;
-import com.whereguesthome.pojo.Sort;
+
 
 public interface GoodsService {
 	    
@@ -24,7 +20,7 @@ public interface GoodsService {
     void selectByPrimaryKey(Integer gId,Model model);
 
     //更新商品信息
-    int updateByPrimaryKeySelective(Goods record,Model model);
+    int updateByPrimaryKeySelective(HttpServletRequest request,Goods record,Model model,MultipartFile photo) throws IllegalStateException, IOException;
 
     //查询所有的商品信息
     void selectAll(Model model);

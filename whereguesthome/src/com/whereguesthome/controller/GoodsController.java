@@ -67,4 +67,27 @@ public class GoodsController {
 		return "admin/product/edit";
 			
 		}
+	
+	//商品的更新
+	@RequestMapping(value="updatego",method=RequestMethod.POST)
+	public String update(HttpServletRequest request,Goods record, Model model,MultipartFile photo) throws IOException{
+				
+		int i = goodsService.updateByPrimaryKeySelective(request,record, model, photo);
+		if(i>0){
+			return "redirect:/admin/product/" ;
+		}else{
+			return "admin/product/edit";
+		}
+				
+		}
+	
+	//商品的删除
+		@RequestMapping(value="{gId}/delete",method=RequestMethod.GET)
+		public String delete(@PathVariable Integer gId, Model model) throws IOException{
+				
+			goodsService.deleteByPrimaryKey(gId, model);
+				
+			return "redirect:/admin/product/";
+				
+			}
 }

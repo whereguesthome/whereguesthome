@@ -10,8 +10,7 @@
 		<script type="text/javascript">
 			function addProduct(){
 				window.location.href = "${pageContext.request.contextPath}/admin/product/add";
-			}
-			
+			}		
 		</script>
 	</HEAD>
 	<body>
@@ -173,7 +172,7 @@
 											</td>
 									
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${ pageContext.request.contextPath }/adminProduct_delete.action?pid=">
+												<a href="${g.gId}/delete">
 													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
 												</a>
 											</td>

@@ -30,11 +30,11 @@ public class AdminServiceImp implements AdminService{
 				flag =true;
 				
 			}else{
-				model.addAttribute("a", "密码或用户名错误");
+				model.addAttribute("b", "密码或用户名错误");
 				flag = false;
 			}
 		}else{
-			model.addAttribute("a", "密码或用户名错误");
+			model.addAttribute("b", "密码或用户名错误");
 			flag = false;
 		}
 		

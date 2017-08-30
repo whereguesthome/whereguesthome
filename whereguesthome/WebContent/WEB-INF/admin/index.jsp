@@ -13,9 +13,15 @@ body {
   color: white;
 }
 </style>
+<script type="text/javascript">
+if ("${b}" != "") {
+	alert("${b}")
+}
+</script>
 </head>
 <body style="background: #278296">
 <center></center>
+
 <form method="post" action="denglu" target="_parent" name='theForm' >
   <table cellspacing="0" cellpadding="0" style="margin-top: 100px" align="center">
   <tr>
@@ -34,8 +40,11 @@ body {
     </td>
   </tr>
   </table>
+  
 </form>
+
 <script language="JavaScript">
+	
 <!--
   document.forms['theForm'].elements['username'].focus();
   
@@ -57,3 +66,4 @@ body {
 //-->
 </script>
 </body>
+</html>
