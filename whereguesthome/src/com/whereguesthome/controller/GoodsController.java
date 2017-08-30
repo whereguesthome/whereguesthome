@@ -55,10 +55,5 @@ public class GoodsController {
 		
 	}
 	
-	//模糊查询
-	@RequestMapping(value="list")
-	public String findParam(String gName,Model m){
-		goodsService.findParam(gName, m);
-		return "product_list";
-	}
+
 }

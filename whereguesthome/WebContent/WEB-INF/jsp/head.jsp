@@ -59,7 +59,7 @@
 							</ul>
 							<form class="navbar-form navbar-right" role="search" action="list">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Search">
+									<input type="text" class="form-control" placeholder="Search" name="gName">
 								</div>
 								<button type="submit" class="btn btn-default">搜索</button>
 							</form>
