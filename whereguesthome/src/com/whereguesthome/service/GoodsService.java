@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,4 +50,11 @@ public interface GoodsService {
 	List<Goods> getByPage(Integer sId, Integer StartIndex, Integer pageSize) throws Exception;
 	
 	void selectlistSort(Model model);
+
+   
+	//根据商品名称模糊查询
+	void findParam(String gName,Model m);
+	
+	void findParamPage(Model m,Integer pageNumber);
+
 }

@@ -57,6 +57,7 @@ public class GoodsController {
 		
 	}
 	
+
 	//商品的编辑
 	@RequestMapping(value="{gId}",method=RequestMethod.GET)
 	public String binaji(@PathVariable Integer gId, Model model) throws IOException{

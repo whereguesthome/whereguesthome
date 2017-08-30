@@ -199,4 +199,20 @@
   select g.*,s.* from goods g,sort s where g.s_id=s.s_id ;
   </select>
 
+  <select id="findParam" resultMap="BaseResultMap">
+     select g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId  from goods
+     <where>
+      1=1
+      <if test="gName !=null and gName != ''">
+       and g_name like #{gName}
+      </if>      
+     </where>
+   </select>
+   
+   	<select id="findParamPage" resultType="com.whereguesthome.pojo.Goods">
+		SELECT  g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId 
+		FROM goods  LIMIT #{StartIndex},#{pageNumber}
+		
+	</select>
+
 </mapper>

@@ -56,6 +56,20 @@ public class UserGoodsController {
 			List<Goods> list=goodsService.getByPage(sId, StartIndex,pagebean.getPageSize());
 			pagebean.setData(list);
 			m.addAttribute("pagebean", pagebean);
-			return "product_list";
+			return "jsp/product_list";
+		}
+		
+		/*//模糊查询
+		@RequestMapping(value="list")
+		public String findParam(String gName,Model m){
+			goodsService.findParam(gName, m);
+			return "jsp/list";
+		}*/
+		
+	//模糊查询分页
+		@RequestMapping(value="list")
+		public String findParamPage(Model m,Integer pageNumber) {
+		goodsService.findParamPage(m, pageNumber);
+		return "jsp/list";
 		}
 }

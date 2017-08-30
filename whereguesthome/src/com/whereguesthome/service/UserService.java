@@ -23,4 +23,6 @@ public interface UserService {
 	 *            模型
 	 */
 	boolean deleteUserById(Integer id, Model model);
+
+	void backgroundUserDisplay(Model model,Integer pageNumbe);
 }
