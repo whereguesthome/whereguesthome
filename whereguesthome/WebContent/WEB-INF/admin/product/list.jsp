@@ -15,6 +15,12 @@
 		</script>
 	</HEAD>
 	<body>
+	<c:forEach items="${sort}" var="s" varStatus="r">
+						  分类名称： ${s.sName }
+						 <c:forEach items="${s.listGoods }" var="c">
+					    	商品名称：${c.sName } 
+						</c:forEach> 
+		</c:forEach>
 		<br>
 		<form id="Form1" name="Form1" action="${pageContext.request.contextPath}/user/list.jsp" method="post">
 			<table cellSpacing="1" cellPadding="0" width="100%" align="center" bgColor="#f5fafe" border="0">
@@ -23,10 +29,19 @@
 						<td class="ta_01" align="center" bgColor="#afd1f3">
 							<strong>商品列表</strong>
 						</TD>
+				
 					</tr>
 					<tr>
+					<td class="ta_01" align="left">
+						<select name="fenlei2" style="width: 70px;height: 30px;font-size: 15px;color: black;">
+						<c:forEach items="${listSort2}" var="s" >
+						
+						<option value="${s.sName }" >${s.sName }</option>
+						</c:forEach>
+						</select>
+						</td>
 						<td class="ta_01" align="right">
-							<button type="button" id="add" name="add" value="添加" class="button_add" onclick="addProduct()">
+							<button type="button" id="add" name="add" value="添加" style="width: 50px;height: 30px;" class="button_add" onclick="addProduct()">
 &#28155;&#21152;
 </button>
 
@@ -89,7 +104,7 @@
 										删除
 									</td>
 								</tr>
-								<c:forEach items="${goodslist }" var="g">
+							 <c:forEach items="${goodslist}" var="g">
 										<tr onmouseover="this.style.backgroundColor = 'white'"
 											onmouseout="this.style.backgroundColor = '#F5FAFE';">
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
@@ -135,8 +150,8 @@
 											
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												>
-												<c:if test="${p.gStatus==1 }">未下架</c:if>
-												<c:if test="${p.gStatust==2 }">已下架</c:if>
+												<c:if test="${g.gStatus==1 }">未下架</c:if>
+												<c:if test="${g.gStatus==2 }">已下架</c:if>
 											</td>
 											
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
@@ -147,11 +162,12 @@
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												>
 												${g.sId }
+												
 											</td>
 											
 											
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${ pageContext.request.contextPath }/adminProduct_edit.action?pid=">
+												<a href="${g.gId }">
 													<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
 												</a>
 											</td>

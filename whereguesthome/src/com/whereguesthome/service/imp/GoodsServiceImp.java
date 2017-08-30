@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.whereguesthome.mapper.GoodsMapper;
 import com.whereguesthome.mapper.SortMapper;
 import com.whereguesthome.pojo.Goods;
+import com.whereguesthome.pojo.GoodsSort;
 import com.whereguesthome.pojo.Sort;
 import com.whereguesthome.service.GoodsService;
 
@@ -30,8 +31,10 @@ public class GoodsServiceImp implements GoodsService {
 	// 查询所有的商品信息
 	@Override
 	public void selectAll(Model model) {
+		List<Sort> listSort2 = sortMapper.SelectAll();
 		List<Goods> goodslist = goodsMapper.selectAll();
-		model.addAttribute("goodslist", goodslist);
+        model.addAttribute("goodslist", goodslist);
+        model.addAttribute("listSort2", listSort2);
 	}
 	
 	// 根据ID删除商品信息
@@ -112,7 +115,6 @@ public class GoodsServiceImp implements GoodsService {
 			a = 0;
 		}
 		return a;
-		//原始名称  
  
 	}
 
@@ -120,10 +122,14 @@ public class GoodsServiceImp implements GoodsService {
 	@Override
 	public void selectByPrimaryKey(Integer gId,Model model) {
 		Goods goods = goodsMapper.selectByPrimaryKey(gId);
+		List<Sort> list = sortMapper.SelectAll();
 		String msg = null;
+		
 		if(goods!=null){
+			Sort sort2 = sortMapper.selectByPrimaryKey(goods.getsId());
 			model.addAttribute("goods", goods);
-			
+			model.addAttribute("list", list);
+			model.addAttribute("sort2", sort2);
 		}else{
 			msg = "没有改商品信息";
 			model.addAttribute("msg", msg);
@@ -183,6 +189,13 @@ public class GoodsServiceImp implements GoodsService {
 		return null;
 	}
 
+	@Override
+	public void selectlistSort(Model model) {
+		
+		List<Sort> sort = goodsMapper.selectlistSort();
 	
+		model.addAttribute("sort", sort);
+	}
+
 
 }

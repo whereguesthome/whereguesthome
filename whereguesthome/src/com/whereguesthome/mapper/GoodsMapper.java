@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.whereguesthome.pojo.Goods;
+import com.whereguesthome.pojo.Sort;
 
 /**
  * @author GongZhen
@@ -46,4 +47,6 @@ public interface GoodsMapper {
 	
 	List<Goods> getByPage(@Param("sId") Integer sId,@Param("StartIndex")Integer StartIndex,
 			@Param("pageSize")Integer pageSize);
+	
+	List<Sort> selectlistSort();
 }

@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.whereguesthome.pojo.Goods;
+import com.whereguesthome.pojo.GoodsSort;
+import com.whereguesthome.pojo.Sort;
 
 public interface GoodsService {
 	    
@@ -45,4 +47,6 @@ public interface GoodsService {
 	 * @throws Exception
 	 */
 	List<Goods> getByPage(Integer sId, Integer StartIndex, Integer pageSize) throws Exception;
+	
+	void selectlistSort(Model model);
 }
