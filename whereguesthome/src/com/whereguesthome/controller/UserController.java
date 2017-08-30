@@ -3,6 +3,7 @@ package com.whereguesthome.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import com.whereguesthome.md5.md5jdkUtil;
 import com.whereguesthome.pojo.User;
 import com.whereguesthome.service.UserService;
 @Controller
-@SessionAttributes("user")
 @RequestMapping("jsp")
 public class UserController {
 	
@@ -53,29 +53,31 @@ public class UserController {
 	  String md5=md5jdkUtil.getMd5(uPassword);
 		for (User users : list) {
 			if (users.getuName().equals(uName) && users.getuPassword().equals(md5)) {				
-				/*
-				 * request.getSession().setAttribute("user",users)
-				 * ; @SessionAttributes配置后，原始的request获取ssesion存放数据失效
-				 */
-				// 登录成功保存用户登录状态
-				m.addAttribute("user", users);
+				  request.getSession().setAttribute("user",users);
+					 /* ; @SessionAttributes配置后，原始的request获取ssesion存放数据失效*/
+					// 登录成功保存用户登录状态							
 				flag = true;
-				return "jsp/index";
+                break;
+				
+			}else{
+				flag = false;
 			}
+		   }if (flag ) {			  
+			   return "redirect:/jsp/index";
+		}else{
+			m.addAttribute("users", "用户名或密码错误");
+			return "jsp/login";	
 		}
-		if (flag = false) {
-			m.addAttribute("user", "用户名或密码错误");
-			return "jsp/login";
-		}
-		return null;
 
 	}
 
+
 	// 用户退出
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request) {
-		request.getSession().invalidate();
-		return "jsp/register";
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session){		
+		session.removeAttribute("user");
+		session.invalidate();
+		 return "redirect:index";
 	}
 
 }

@@ -49,5 +49,7 @@ public interface GoodsMapper {
 	
 	//商品的模糊查询
 		List<Goods> findParam(@Param("gName") String gName);
+		//模糊查询分页
+		List<Goods> findParamPage(@Param("StartIndex")Integer StartIndex,@Param("pageNumber")Integer pageNumber);
 		
 }

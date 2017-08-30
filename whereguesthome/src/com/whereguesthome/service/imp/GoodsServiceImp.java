@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.whereguesthome.mapper.GoodsMapper;
 import com.whereguesthome.mapper.SortMapper;
 import com.whereguesthome.pojo.Goods;
+import com.whereguesthome.pojo.PageBean;
 import com.whereguesthome.pojo.Sort;
 import com.whereguesthome.service.GoodsService;
 
@@ -191,6 +192,26 @@ public class GoodsServiceImp implements GoodsService {
 		}
      List<Goods> list=goodsMapper.findParam(gName);		
      m.addAttribute("list", list);
+	}
+
+	@Override
+	public void findParamPage(Model m, Integer pageNumber) {
+	  int currentPage = 1;//默认页码
+		int pageSize = 4;//默认每页记录数	
+		if (pageNumber != null) {
+			currentPage = pageNumber;
+		}
+		//总记录数
+		List<Goods> list=goodsMapper.selectAll();
+		int totalRecord=list.size();
+		PageBean<Goods> pagebean=new PageBean<>();
+		pagebean.setPageNumber(currentPage);
+		pagebean.setPageSize(pageSize);
+		pagebean.setTotalPage(totalRecord);
+		
+		List<Goods> listGoods=goodsMapper.findParamPage(pagebean.getStartIndex(), pageNumber);
+		pagebean.setData(listGoods);
+		m.addAttribute("pagebean", "pagebean");
 	}
 	
 

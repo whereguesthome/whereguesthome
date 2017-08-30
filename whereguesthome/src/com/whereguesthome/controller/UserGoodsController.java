@@ -65,4 +65,10 @@ public class UserGoodsController {
 			goodsService.findParam(gName, m);
 			return "jsp/list";
 		}
+		//模糊查询分页
+		@RequestMapping(value="list")
+		public String findParamPage(Model m,Integer pageNumber) {
+		goodsService.findParamPage(m, pageNumber);
+		return "jsp/list";
+		}
 }

@@ -186,4 +186,9 @@
      </where>
    </select>
    
+   	<select id="findParamPage" resultType="com.whereguesthome.pojo.Goods">
+		SELECT  g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId 
+		FROM goods  LIMIT #{StartIndex},#{pageNumber}
+		
+	</select>
 </mapper>
