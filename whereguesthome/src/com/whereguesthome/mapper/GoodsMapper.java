@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.whereguesthome.pojo.Goods;
+import com.whereguesthome.pojo.Sort;
 
 /**
  * @author GongZhen
@@ -24,7 +25,7 @@ public interface GoodsMapper {
     //根据ID查询商品信息
     Goods selectByPrimaryKey(Integer gId);
 
-    //根据ID更新商品信息
+    //更新商品信息
     int updateByPrimaryKeySelective(Goods record);
 
     //查询所有的商品信息
@@ -47,7 +48,11 @@ public interface GoodsMapper {
 	List<Goods> getByPage(@Param("sId") Integer sId,@Param("StartIndex")Integer StartIndex,			
 			@Param("pageSize")Integer pageSize);
 	
+	List<Sort> selectlistSort();
+
 	//商品的模糊查询
 		List<Goods> findParam(@Param("gName") String gName);
+		//模糊查询分页
+		List<Goods> findParamPage(@Param("StartIndex")Integer StartIndex,@Param("pageNumber")Integer pageNumber);
 		
 }

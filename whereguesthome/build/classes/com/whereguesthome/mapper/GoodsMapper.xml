@@ -176,6 +176,29 @@
   
   </select> 
   
+  <resultMap type="com.whereguesthome.pojo.Sort" id="listSort_result">
+  	 		<id column="s_id" property="sId"/>  
+            <result column="s_name" property="sName"/>  
+            
+            <collection property="listGoods" ofType="com.whereguesthome.pojo.Goods">
+            	<id column="g_id" jdbcType="INTEGER" property="gId" />
+    			<result column="g_name" jdbcType="VARCHAR" property="gName" />
+   				<result column="g_price" jdbcType="DOUBLE" property="gPrice" />
+   				<result column="g_saleprice" jdbcType="DOUBLE" property="gSaleprice" />
+    		    <result column="g_describes" jdbcType="VARCHAR" property="gDescribes" />
+   				<result column="g_contents" jdbcType="VARCHAR" property="gContents" />
+   				<result column="g_photo" jdbcType="VARCHAR" property="gPhoto" />
+   				<result column="g_repertory" jdbcType="INTEGER" property="gRepertory" />
+   				<result column="g_saledate" jdbcType="DATE" property="gSaledate" />
+    			<result column="s_id" jdbcType="INTEGER" property="sId" />
+   			    <result column="g_status" jdbcType="INTEGER" property="gStatus" />
+            </collection>
+  </resultMap>
+  
+  <select id="selectlistSort" resultMap="listSort_result">
+  select g.*,s.* from goods g,sort s where g.s_id=s.s_id ;
+  </select>
+
   <select id="findParam" resultMap="BaseResultMap">
      select g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId  from goods
      <where>
@@ -186,4 +209,10 @@
      </where>
    </select>
    
+   	<select id="findParamPage" resultType="com.whereguesthome.pojo.Goods">
+		SELECT  g_id gId,g_name gName,g_price gPrice,g_saleprice gSaleprice,g_describes gDescribes,g_contents gContents,g_photo gPhoto,g_repertory gRepertory,g_saledate gSaledate,s_id sId 
+		FROM goods  LIMIT #{StartIndex},#{pageNumber}
+		
+	</select>
+
 </mapper>

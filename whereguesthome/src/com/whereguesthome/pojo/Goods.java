@@ -24,8 +24,18 @@ public class Goods {
     private Integer sId;
 
     private Integer gStatus;
+    
+    private Sort sort;
 
-    public Integer getgId() {
+    public Sort getSort() {
+		return sort;
+	}
+
+	public void setSort(Sort sort) {
+		this.sort = sort;
+	}
+
+	public Integer getgId() {
         return gId;
     }
 

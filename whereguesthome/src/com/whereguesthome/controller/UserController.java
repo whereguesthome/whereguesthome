@@ -3,6 +3,7 @@ package com.whereguesthome.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import com.whereguesthome.md5.md5jdkUtil;
 import com.whereguesthome.pojo.User;
 import com.whereguesthome.service.UserService;
 @Controller
-@SessionAttributes("user")
 @RequestMapping("jsp")
 public class UserController {
 	
@@ -81,11 +81,13 @@ public class UserController {
 
 	}
 
+
 	// 用户退出
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request) {
-		request.getSession().invalidate();
-		return "jsp/register";
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session){		
+		session.removeAttribute("user");
+		session.invalidate();
+		 return "redirect:index";
 	}
 
 }

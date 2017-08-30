@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.whereguesthome.pojo.Goods;
+import com.whereguesthome.pojo.GoodsSort;
+import com.whereguesthome.pojo.Sort;
 
 public interface GoodsService {
 	    
@@ -45,7 +48,13 @@ public interface GoodsService {
 	 * @throws Exception
 	 */
 	List<Goods> getByPage(Integer sId, Integer StartIndex, Integer pageSize) throws Exception;
+	
+	void selectlistSort(Model model);
+
    
 	//根据商品名称模糊查询
 	void findParam(String gName,Model m);
+	
+	void findParamPage(Model m,Integer pageNumber);
+
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,6 +34,7 @@ public class GoodsController {
 	public String findAll(Model model){
 		
 		goodsService.selectAll(model);
+		/*goodsService.selectlistSort(model);*/
 		return "admin/product/list";
 	}
 	
@@ -55,10 +57,14 @@ public class GoodsController {
 		
 	}
 	
-	//模糊查询
-	@RequestMapping(value="list")
-	public String findParam(String gName,Model m){
-		goodsService.findParam(gName, m);
-		return "product_list";
-	}
+
+	//商品的编辑
+	@RequestMapping(value="{gId}",method=RequestMethod.GET)
+	public String binaji(@PathVariable Integer gId, Model model) throws IOException{
+			
+		goodsService.selectByPrimaryKey(gId, model);
+			
+		return "admin/product/edit";
+			
+		}
 }

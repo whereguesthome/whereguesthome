@@ -40,7 +40,7 @@ public class AdminController {
 		}
 	}
 	
-	
+	//注销，清空session
 	@RequestMapping(value="/zhuxiao",method=RequestMethod.GET)
 	public String outLogin(HttpSession session,SessionStatus sessionStatus){
         session.removeAttribute("a");//我这里是先取出httpsession中的user属性

@@ -37,6 +37,7 @@
             	时间：2015-12-30
             	描述：导航条
             -->
+
 <div class="container-fluid">
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -50,27 +51,47 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="index">首页</a>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav" id="c_ul">
+
+
+					</ul>
+					<form class="navbar-form navbar-right" role="search" action="list">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search"
+								name="gName">
+						</div>
+						<button type="submit" class="btn btn-default">搜索</button>
+					</form>
+
+				</div>
+				<!-- /.navbar-collapse -->
 			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav" id="c_ul">
-
-
-				</ul>
-				<form class="navbar-form navbar-right" role="search" action="list">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">搜索</button>
-				</form>
-
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
+			<!-- /.container-fluid -->
 	</nav>
+</div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	<ul class="nav navbar-nav" id="c_ul">
+
+
+	</ul>
+	<form class="navbar-form navbar-right" role="search" action="list">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Search">
+		</div>
+		<button type="submit" class="btn btn-default">搜索</button>
+	</form>
+
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container-fluid -->
+</nav>
 </div>
 <script type="text/javascript">
 	$(function() {
