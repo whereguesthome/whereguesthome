@@ -191,7 +191,6 @@ font {
 								<th>价格</th>
 								<th>数量</th>
 								<th>小计</th>
-								<th>操作</th>
 							</tr>
 							<c:forEach items="${shopcar }" var="s">
 								<tr class="active">
@@ -206,8 +205,6 @@ font {
 									<td width="10%" class="shul"><input type="text"
 										name="quantity" value="${s.s_num }" maxlength="4" size="10"></td>
 									<td width="15%" class="sping"><span class="subtotal">${s.goods.gSaleprice*s.s_num }</span></td>
-									<td><a href="${s.goods.gId }" class="delete">添加数量到购物车</a>
-									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

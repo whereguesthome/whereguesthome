@@ -28,6 +28,7 @@ public class ShopcarController {
 	// 显示当前购物车所有信息
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String showShopcar(Model model, HttpSession session) {
+		System.out.println("你好");
 		shopcarService.displayShopcar(model, session);
 		return "jsp/cart";
 	}
@@ -36,7 +37,7 @@ public class ShopcarController {
 	@RequestMapping(value = "cart/delete", method = RequestMethod.POST)
 	public String delete(Integer[] gid, Model model, HttpSession session) {
 		shopcarService.deleteShopcarById(gid, model, session);
-		return "redirect: /jsp/cart";
+		return "redirect:/jsp/cart";
 	}
 
 	// 修改商品的数量
