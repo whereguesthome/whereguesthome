@@ -187,15 +187,7 @@ public class GoodsServiceImp implements GoodsService {
 		return null;
 	}
     
-	//模糊查询
-	@Override
-	public void findParam(String gName ,Model m) {
-		if(gName !=null && gName !=""){
-			gName="%"+gName+"%";
-		}
-     List<Goods> list=goodsMapper.findParam(gName);		
-     m.addAttribute("list", list);
-	}
+
 
 	@Override
 	public void selectlistSort(Model model) {
@@ -204,23 +196,18 @@ public class GoodsServiceImp implements GoodsService {
 		model.addAttribute("sort", sort);
 	}
 
-	public void findParamPage(Model m,Integer pageNumber) {
-	  int currentPage = 1;//默认页码
-		int pageSize = 4;//默认每页记录数	
-		if (pageNumber != null) {
-			currentPage = pageNumber;
+	@Override
+	public List<Goods> findParamPage(String gName ,Integer pageSize,Integer StartIndex) {
+		if(gName !=null && gName !=""){
+			gName="%"+gName+"%";
 		}
-		//总记录数
-		List<Goods> list=goodsMapper.selectAll();
-		int totalRecord=list.size();
-		PageBean<Goods> pagebean=new PageBean<>();
-		pagebean.setPageNumber(currentPage);
-		pagebean.setPageSize(pageSize);
-		pagebean.setTotalPage(totalRecord);
-		
-		List<Goods> listGoods=goodsMapper.findParamPage(pagebean.getStartIndex(), pageNumber);
-		pagebean.setData(listGoods);
-		m.addAttribute("pagebean", "pagebean");
+		return goodsMapper.findParamPage(gName, StartIndex, pageSize);
+	}
+
+
+	@Override
+	public int findParam(String gName) throws Exception {		
+		return goodsMapper.findParam(gName);
 	}
 	
 	

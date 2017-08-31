@@ -134,6 +134,7 @@
 						<p><font color="#E4393C" style="font-size:16px">&yen;${ g.gSaleprice}</font></p>
 					</div>
 					</c:forEach>
+					
 				</div>
 				
 			</div>			

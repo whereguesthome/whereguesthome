@@ -50,9 +50,9 @@ public interface GoodsMapper {
 	
 	List<Sort> selectlistSort();
 
-	//商品的模糊查询
-		List<Goods> findParam(@Param("gName") String gName);
-		//模糊查询分页
-		List<Goods> findParamPage(@Param("StartIndex")Integer StartIndex,@Param("pageNumber")Integer pageNumber);
+	//根据商品的名称查询记录总数
+	int findParam(@Param("gName") String gName);
+	//模糊查询分页
+	List<Goods> findParamPage(@Param("gName") String gName,@Param("StartIndex")Integer StartIndex,@Param("pageSize")Integer pageSize);
 		
 }

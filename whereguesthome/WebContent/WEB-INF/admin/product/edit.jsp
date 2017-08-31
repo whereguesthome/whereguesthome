@@ -1,5 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core 
+
+" prefix="c" %>
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
@@ -32,10 +34,11 @@
 						状态：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<select name="is_status">
+						  <select name="is_status">
 							<option value="1" <c:if test="${goods.gStatus==1 }">selected='selected'</c:if>>未下架</option>
+							
 							<option value="2" <c:if test="${goods.gStatus==2 }">selected='selected'</c:if>>已下架</option>
-						</select>
+						</select>   
 					</td>
 				</tr>
 				<tr>
