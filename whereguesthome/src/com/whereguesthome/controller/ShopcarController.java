@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,7 +28,21 @@ public class ShopcarController {
 	// 显示当前购物车所有信息
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String showShopcar(Model model, HttpSession session) {
-		shopcarService.displayShopcar(model,session);
+		shopcarService.displayShopcar(model, session);
 		return "jsp/cart";
 	}
+
+	// 批量删除购物车的一条数据
+	@RequestMapping(value = "cart/delete", method = RequestMethod.POST)
+	public String delete(Integer[] gid, Model model, HttpSession session) {
+		shopcarService.deleteShopcarById(gid, model, session);
+		return "redirect: /jsp/cart";
+	}
+
+	// 修改商品的数量
+	@RequestMapping(value = "cart/modify", method = RequestMethod.POST)
+	public void modify(Shopcar shopcar) {
+		shopcarService.modifyShopcarIndex(shopcar);
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.whereguesthome.pojo;
 
+
+
 public class Shopcar {
 	private Integer u_id;
 	private Integer g_id;

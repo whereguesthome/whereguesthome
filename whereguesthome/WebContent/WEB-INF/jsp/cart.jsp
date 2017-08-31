@@ -45,16 +45,58 @@ font {
 </style>
 <script type="text/javascript">
 	$(function() {
-		$("input").keyup(function() {
-			//获取商品价格
-			var a = $(this).parent().prev().text();
-			 //如果输入非数字，则替换为''，如果输入数字，则在每4位之后添加一个空格分隔
-            var text=this.value = this.value.replace(/[^\d]/g, '').replace(/(\d{4})(?=\d)/g, "$1 ");
-			//总价格
-			var sum = a * text;
-			$(this).parent().next().find("span").text(sum);
-		})
+		$("input").keyup(
+				function() {
+					//获取商品价格
+					var a = $(this).parent().prev().text();
+					//如果输入非数字，则替换为''，如果输入数字，则在每4位之后添加一个空格分隔
+					var text = this.value = this.value.replace(/[^\d]/g, '')
+							.replace(/(\d{4})(?=\d)/g, "$1 ");
+					//总价格
+					var sum = a * text;
+					$(this).parent().next().find("span").text(sum);
+				})
+		//鼠标选中事件
+		$(".sz").click(
+				function() {
+					//获取积分
+					var a = parseFloat($("#jif").text());
+
+					//获取金额
+					var b = parseFloat($("#jr").text());
+					if ($(this).is(':checked')) {
+						//当前为选中状态
+						var c = parseFloat($(this).parent().nextAll(".sping")
+								.find("span").text());//当前选中商品的价格
+						//当前选中商品数量为只读状态
+						$(this).parent().nextAll(".shul").find("input").attr(
+								"readonly", "true");
+						$("#jif").text(parseInt(a + c));
+						//金额
+						$("#jr").text(parseInt(b + c));
+					} else {
+						//当前为不选中状态
+						var c = parseFloat($(this).parent().nextAll(".sping")
+								.find("span").text());//当前选中商品的价格
+						//当前选中商品数量为只读状态
+						$(this).parent().nextAll(".shul").find("input")
+								.removeAttr("readonly");
+						//积分
+						$("#jif").text(a - c);
+						//金额
+						$("#jr").text(b - c);
+					}
+				})
+			//批量删除
+			$("#pilsc").click(function(){
+				$("#userForm").attr("action","cart/delete")
+			})
 	})
+	//批量删除语句
+	function deleteUsers() {
+		document.userForm.action = "delete";
+		document.userForm.submit();
+	}
 </script>
 </head>
 
@@ -132,60 +174,64 @@ font {
 		</nav>
 	</div>
 
+	<form action="${pageContext.request.contextPath }/user/" method="post"
+		name="userForm" id="userForm">
+		<div class="container">
+			<div class="row">
 
-	<div class="container">
-		<div class="row">
+				<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
+					<strong style="font-size: 16px; margin: 5px 0;">订单详情</strong>
 
-			<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
-				<strong style="font-size: 16px; margin: 5px 0;">订单详情</strong>
-				<table class="table table-bordered">
-					<tbody>
-						<tr class="warning">
-							<th>图片</th>
-							<th>商品</th>
-							<th>价格</th>
-							<th>数量</th>
-							<th>小计</th>
-							<th>操作</th>
-						</tr>
-						<c:forEach items="${shopcar }" var="s">
-							<tr class="active">
-								<td width="60" width="40%"><input type="hidden" name="id"
-									value="22"> <img
-									src="${pageContext.request.contextPath}/image/dadonggua.jpg"
-									width="70" height="60"></td>
-								<td width="30%"><a target="_blank">${s.goods.gName }</a></td>
-								<td width="20%">${s.goods.gSaleprice }</td>
-								<td width="10%"><input type="text" name="quantity"
-									value="${s.s_num }" maxlength="4" size="10"></td>
-								<td width="15%"><span class="subtotal">${s.goods.gSaleprice*s.s_num }</span></td>
-								<td><a href="javascript:;" class="delete">删除</a></td>
+					<table class="table table-bordered">
+						<tbody>
+							<tr class="warning">
+								<th>操作</th>
+								<th>图片</th>
+								<th>商品</th>
+								<th>价格</th>
+								<th>数量</th>
+								<th>小计</th>
+								<th>操作</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+							<c:forEach items="${shopcar }" var="s">
+								<tr class="active">
+									<td><input type="checkbox" name="gid"
+										value="${s.goods.gId}" class="sz"></td>
+									<td width="60" width="40%"><input type="hidden" name="id"
+										value="22"> <img
+										src="${pageContext.request.contextPath}/image/dadonggua.jpg"
+										width="70" height="60"></td>
+									<td width="30%"><a target="_blank">${s.goods.gName }</a></td>
+									<td width="20%">${s.goods.gSaleprice }</td>
+									<td width="10%" class="shul"><input type="text"
+										name="quantity" value="${s.s_num }" maxlength="4" size="10"></td>
+									<td width="15%" class="sping"><span class="subtotal">${s.goods.gSaleprice*s.s_num }</span></td>
+									<td><a href="${s.goods.gId }" class="delete">添加数量到购物车</a>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div style="margin-right: 130px;">
+				<div style="text-align: right;">
+					<em style="color: #ff6600;"> 登录后确认是否享有优惠&nbsp;&nbsp; </em> 赠送积分: <em
+						style="color: #ff6600;" id="jif">0</em>&nbsp; 商品金额: <strong
+						style="color: #ff6600;" id="jr">0</strong>
+				</div>
+				<div
+					style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
+					<input type="submit" value="批量删除" id="pilsc"/>
+					<input
+						type="submit" width="100" value="提交订单" name="submit" border="0"
+						style="background: url('${pageContext.request.contextPath}/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+						height:35px;width:100px;color:white;"/>
+				</div>
 			</div>
 		</div>
-
-		<div style="margin-right: 130px;">
-			<div style="text-align: right;">
-				<em style="color: #ff6600;"> 登录后确认是否享有优惠&nbsp;&nbsp; </em> 赠送积分: <em
-					style="color: #ff6600;">596</em>&nbsp; 商品金额: <strong
-					style="color: #ff6600;">￥596.00元</strong>
-			</div>
-			<div
-				style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
-				<a href="order_info.jsp" id="clear" class="clear">清空购物车</a> <a
-					href="order_info.jsp"> <input type="submit" width="100"
-					value="提交订单" name="submit" border="0"
-					style="background: url('${pageContext.request.contextPath}/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-						height:35px;width:100px;color:white;">
-				</a>
-			</div>
-		</div>
-
-	</div>
-
+	</form>
 	<div style="margin-top: 50px;">
 		<img src="${pageContext.request.contextPath}/image/footer.jpg"
 			width="100%" height="78" alt="我们的优势" title="我们的优势" />

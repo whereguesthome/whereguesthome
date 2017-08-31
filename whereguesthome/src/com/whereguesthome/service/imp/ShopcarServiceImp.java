@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.whereguesthome.mapper.ShopcarMapper;
 import com.whereguesthome.pojo.Shopcar;
@@ -34,7 +36,8 @@ public class ShopcarServiceImp implements ShopcarService {
 		if (user == null) {
 			model.addAttribute("msg", "请登录");
 		} else {
-			List<Shopcar> shopcar = shopcarMapper.findShopcarList(user.getuId());
+			/*List<Shopcar> shopcar = shopcarMapper.findShopcarList(user.getuId());*/
+			List<Shopcar> shopcar = shopcarMapper.findShopcarList(13);
 			model.addAttribute("shopcar", shopcar);
 		}
 	}
@@ -43,11 +46,15 @@ public class ShopcarServiceImp implements ShopcarService {
 	// 页面传过来的商品id,用户把商品从当前用户购物车中清除
 	// 批量删除循环执行以下方法
 	@Override
-	public void deleteShopcarById(Integer uid, Integer gid, Model model) {
+	public void deleteShopcarById(Integer[] gid, Model model, HttpSession session) {
 		String msg = null;
-		if (uid != null && gid != null) {
-			int a = shopcarMapper.deleteShopcarById(uid, gid);
-			msg = "商品删除成功,编号为" + a + "";
+		// 获取用户session信息
+		User user = (User) session.getAttribute("user");
+		if (user != null && gid != null) {
+			for (int i : gid) {
+				shopcarMapper.deleteShopcarById(user.getuId(), i);
+			}
+			msg = "商品删除成功,编号为";
 			model.addAttribute("msg", msg);
 		} else {
 			msg = "商品删除失败,因为id为空";
@@ -73,20 +80,34 @@ public class ShopcarServiceImp implements ShopcarService {
 	public void addShopcar(Shopcar shopcar, HttpSession session, HttpServletResponse response) {
 		// 获取session
 		String msg = null;
-		User user = (User) session.getAttribute("user");
-		try {
-			if (user == null) {
-				msg = "用户未登录,不可以添加到购物车";
-				response.getWriter().write(msg);
-			} else {
-				shopcarMapper.insertShopcar(shopcar);
-				msg = "添加购物车成功";
-				response.getWriter().write(msg);
+		int a = 0;// 商品默认不存在
+		int b = 0;// 购物车同种商品的数量
+		if (shopcar.getU_id() == null) {
+			msg = "用户未登录,不可以添加到购物车";
+		} else {
+			// 判断当前用户购买商品是否已经存在
+			List<Shopcar> shopcar1 = shopcarMapper.findShopcarList(shopcar.getU_id());
+			for (Shopcar shopcar2 : shopcar1) {
+				if (shopcar.getG_id().equals(shopcar2.getGoods().getgId())) {
+					a = 1;
+					b = shopcar2.getS_num();
+				}
 			}
+			if (a == 1) {
+				shopcar.setS_num(b + shopcar.getS_num());
+				shopcarMapper.updateShopcarById(shopcar);
+				msg = "商品添加成功";
+			}
+			if (a == 0) {
+				shopcarMapper.insertShopcar(shopcar);
+				msg = "商品添加成功";
+			}
+		}
+		try {
+			response.getWriter().write(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 }

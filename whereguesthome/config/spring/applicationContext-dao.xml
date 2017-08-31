@@ -9,32 +9,32 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 	<!-- 加载jdbc.properties -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
-
+	 <context:property-placeholder location="classpath:jdbc.properties" />
 	<!-- 配置数据源 -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	 <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/kanke2" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/users" />
 		<property name="user" value="root" />
-		<property name="password" value="1234" />
+		<property name="password" value="root" />
 		<property name="maxPoolSize" value="30" />
 		<property name="minPoolSize" value="5" />
 	</bean>
-
+    
 	<!-- SqlsessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 数据源连接池 -->
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis/mybatis.cf.xml"></property>
 	</bean>
-
-	<!-- mapper扫描器 -->
+    
+    <!-- mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.whereguesthome.mapper" />
+		<property name="basePackage" value="com.newer.mapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-
+	
 </beans>
+
 
 

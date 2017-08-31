@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 
 import com.whereguesthome.pojo.Shopcar;
@@ -23,7 +24,7 @@ public interface ShopcarMapper {
 
 	// 根据用户id,商品id删除商品
 	@Delete("DELETE FROM shopcar WHERE u_id=#{uid} and g_id=#{gid}")
-	public int deleteShopcarById(Integer uid, Integer gid);
+	public int deleteShopcarById(@Param("uid")Integer uid, @Param("gid")Integer gid);
 
 	// 修改商品信息
 	@Update("UPDATE shopcar SET s_num=#{s_num} WHERE u_id=#{u_id} AND g_id=#{g_id}")

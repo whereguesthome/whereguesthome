@@ -48,9 +48,9 @@ public interface GoodsService {
 	void selectlistSort(Model model);
 
    
-	//根据商品名称模糊查询
-	void findParam(String gName,Model m);
-	
-	void findParamPage(Model m,Integer pageNumber);
+	//根据商品的名称查询记录总数
+		int findParam(String gName)throws Exception;
+		//根据商品名称模糊查询
+			List<Goods> findParamPage(String gName,Integer pageSize,Integer StartIndex);
 
 }

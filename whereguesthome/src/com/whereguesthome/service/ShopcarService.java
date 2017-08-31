@@ -23,7 +23,7 @@ public interface ShopcarService {
 	public void displayShopcar(Model model,HttpSession session);
 
 	// 在购物车里移除一条商品信息
-	void deleteShopcarById(Integer uid, Integer gid, Model model);
+	void deleteShopcarById(Integer[] gid, Model model,HttpSession session);
 
 	// 修改商品的数量
 	void modifyShopcarIndex(Shopcar shopcar);
