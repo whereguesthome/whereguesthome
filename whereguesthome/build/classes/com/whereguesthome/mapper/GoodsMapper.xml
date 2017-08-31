@@ -202,7 +202,7 @@
 
  <select id="findParam" resultType="int">
   select count(*) from 
-  goods where g_name =#{gName}
+  goods where g_name like #{gName}
   </select>
   
  <select id="findParamPage" resultType="com.whereguesthome.pojo.Goods">

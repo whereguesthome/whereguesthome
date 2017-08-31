@@ -206,7 +206,10 @@ public class GoodsServiceImp implements GoodsService {
 
 
 	@Override
-	public int findParam(String gName) throws Exception {		
+	public int findParam(String gName) throws Exception {	
+		if(gName !=null && gName !=""){
+			gName="%"+gName+"%";
+		}
 		return goodsMapper.findParam(gName);
 	}
 	

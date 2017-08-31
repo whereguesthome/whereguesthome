@@ -61,16 +61,14 @@ public class UserGoodsController {
 		
 		//模糊查询
 		@RequestMapping(value="list")
-		public String findParam(String gName,Model m,HttpServletRequest req) throws Exception{
-		
+		public String findParam(String gName,Model m,HttpServletRequest req) throws Exception{		
 			PageBean<Goods> pagebean=new PageBean<>();
 			pagebean.setTotalRecord(goodsService.findParam(gName));
 			pagebean.setPageSize(1);
 	      int pageNumber=1;
 	      if (req.getParameter("pageNumber")!=null) {
 	    	  pageNumber=Integer.valueOf(req.getParameter("pageNumber"));
-			}
-			
+			}			
 			pagebean.setPageNumber(pageNumber);
 			int StartIndex=pagebean.getStartIndex();
 			List<Goods> list=goodsService.findParamPage(gName, pagebean.getPageSize(), StartIndex);
