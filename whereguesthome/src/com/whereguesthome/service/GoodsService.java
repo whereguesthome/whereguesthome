@@ -58,4 +58,6 @@ public interface GoodsService {
 	// 根据商品名称模糊查询
 	List<Goods> findParamPage(String gName, Integer pageSize, Integer StartIndex);
 
+	//管理员的分页以及模糊查询
+	void findMyGoods(Model model,Integer pageNumber, Double gSprice, Double gSprice2,String name,String name1);
 }

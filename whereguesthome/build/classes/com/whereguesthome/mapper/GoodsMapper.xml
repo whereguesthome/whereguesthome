@@ -219,4 +219,33 @@
 		#{StartIndex},#{pageSize}
 	</select>
 
+<!-- 开始 查询-->
+<!-- 管理员分页以及模糊查询 -->
+<resultMap id="findMyGoods_result" type="com.whereguesthome.pojo.Goods">
+    <id column="g_id" jdbcType="INTEGER" property="gId" />
+    <result column="g_name" jdbcType="VARCHAR" property="gName" />
+    <result column="g_price" jdbcType="DOUBLE" property="gPrice" />
+    <result column="g_saleprice" jdbcType="DOUBLE" property="gSaleprice" />
+    <result column="g_describes" jdbcType="VARCHAR" property="gDescribes" />
+    <result column="g_contents" jdbcType="VARCHAR" property="gContents" />
+    <result column="g_photo" jdbcType="VARCHAR" property="gPhoto" />
+    <result column="g_repertory" jdbcType="INTEGER" property="gRepertory" />
+    <result column="g_saledate" jdbcType="DATE" property="gSaledate" />
+    <result column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="g_status" jdbcType="INTEGER" property="gStatus" />
+  </resultMap>
+  
+	<select id="findMyGoods" resultMap="findMyGoods_result">
+	SELECT * from goods where g_name LIKE #{name} and g_saleprice &gt;=#{gSprice}
+  and g_saleprice&lt;=#{gSprice2} and s_id = #{id} limit #{StartIndex}, #{pageSize};
+	
+	</select>
+	
+	 <select id="getTotalRecord2" resultType="int">
+ 	 select count(*) from 
+  	goods where s_id =#{sId} and g_name LIKE #{name} and g_saleprice &gt;=#{gSprice}
+   and g_saleprice&lt;=#{gSprice2};
+  
+  </select> 
+	<!-- 结束 -->
 </mapper>

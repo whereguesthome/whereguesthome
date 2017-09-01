@@ -31,13 +31,21 @@ public class GoodsController {
 	private SortService sortService;
 	//查询所有的商品
 	@RequestMapping(value="/")
-	public String findAll(Model model){
-		
-		goodsService.selectAll(model);
-		/*goodsService.selectlistSort(model);*/
+	public String findAll(Model model,Integer pageNumber, Double gSprice, Double gSprice2,String name,String name1){
+	
+		goodsService.findMyGoods(model,pageNumber,gSprice,gSprice2,name, name);
 		return "admin/product/list";
 	}
 	
+	//分类查询
+	@RequestMapping(value="fenye")
+	public String findAll2(Model model,Integer pageNumber, Double gSprice, Double gSprice2,String name,String name1){
+		
+		goodsService.findMyGoods(model,pageNumber,gSprice,gSprice2,name, name1);
+		return "admin/product/list";
+	}
+	
+	//跳转到商品添加的页面
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String add(Model model){
 		sortService.SelectAll(model);

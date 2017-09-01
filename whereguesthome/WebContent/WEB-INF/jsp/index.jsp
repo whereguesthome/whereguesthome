@@ -128,7 +128,7 @@
                    <c:forEach items="${ goods2}" var="g">
 					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
 						<a href="${g.gId }">
-							<img src="${pageContext.request.contextPath}/${g.gPhoto}" width="130" height="130" style="display: inline-block;">
+							<img src="${pageContext.request.contextPath}/${good.gPhoto}" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="${g.gId }" style='color:#666'>${ g.gName}</a></p>
 						<p><font color="#E4393C" style="font-size:16px">&yen;${ g.gSaleprice}</font></p>

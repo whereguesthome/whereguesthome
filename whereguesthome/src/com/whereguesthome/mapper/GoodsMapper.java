@@ -54,5 +54,14 @@ public interface GoodsMapper {
 	// 模糊查询分页
 	List<Goods> findParamPage(@Param("gName") String gName, @Param("StartIndex") Integer StartIndex,
 			@Param("pageSize") Integer pageSize);
+	
+	//管理员分页以及模糊查询
+	List<Goods> findMyGoods(@Param("StartIndex")Integer StartIndex,
+				@Param("pageSize")Integer pageSize,@Param("gSprice" ) Double gSprice,
+				@Param("gSprice2" ) Double gSprice2,@Param("name") String name, @Param("id") Integer id);
+		
+	//后台根据分类编号查询总记录数
+	int getTotalRecord2(@Param("sId") Integer sId,@Param("gSprice" ) Double gSprice,
+				@Param("gSprice2" ) Double gSprice2,@Param("name") String name);
 
 }
