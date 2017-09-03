@@ -1,187 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whereguesthome.mapper.OrderMapper">
-  <resultMap id="BaseResultMap" type="com.whereguesthome.pojo.Order">
-    <id column="o_id" jdbcType="INTEGER" property="oId" />
-    <result column="u_id" jdbcType="INTEGER" property="uId" />
-    <result column="o_realname" jdbcType="VARCHAR" property="oRealname" />
-    <result column="o_address" jdbcType="VARCHAR" property="oAddress" />
-    <result column="o_zip" jdbcType="VARCHAR" property="oZip" />
-    <result column="o_phone" jdbcType="VARCHAR" property="oPhone" />
-    <result column="o_payment" jdbcType="VARCHAR" property="oPayment" />
-    <result column="o_remarks" jdbcType="VARCHAR" property="oRemarks" />
-    <result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
-    <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
-    <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
-  </resultMap>
-    
-      <resultMap id="order-result" type="com.whereguesthome.pojo.Order">
-    <id column="o_id" jdbcType="INTEGER" property="oId" />
-    <result column="u_id" jdbcType="INTEGER" property="uId" />
-    <result column="o_realname" jdbcType="VARCHAR" property="oRealname" />
-    <result column="o_address" jdbcType="VARCHAR" property="oAddress" />
-    <result column="o_zip" jdbcType="VARCHAR" property="oZip" />
-    <result column="o_phone" jdbcType="VARCHAR" property="oPhone" />
-    <result column="o_payment" jdbcType="VARCHAR" property="oPayment" />
-    <result column="o_remarks" jdbcType="VARCHAR" property="oRemarks" />
-    <result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
-    <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
-    <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
-  </resultMap>
-  
-  <select id="queryOrderByOdel" parameterType="java.lang.Integer"  resultMap="order-result">
-  	select  from order where o.oid,o.uid,o.oRealname,o.oZip,o.oPhone,
-  	o.oPayment,o.oRemarks,o.oTime,o.oTag,o.oPrice from order o where
-    u_id=#{uId} and oDel=0
-  </select>
-  
-  
-  
-  <sql id="Base_Column_List">
-    o_id, u_id, o_realname, o_address, o_zip, o_phone, o_payment, o_remarks, o_time, 
-    o_tag, o_price
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from order
-    where o_id = #{oId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from order
-    where o_id = #{oId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.whereguesthome.pojo.Order">
-    insert into order (o_id, u_id, o_realname, 
-      o_address, o_zip, o_phone, 
-      o_payment, o_remarks, o_time, 
-      o_tag, o_price)
-    values (#{oId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{oRealname,jdbcType=VARCHAR}, 
-      #{oAddress,jdbcType=VARCHAR}, #{oZip,jdbcType=VARCHAR}, #{oPhone,jdbcType=VARCHAR}, 
-      #{oPayment,jdbcType=VARCHAR}, #{oRemarks,jdbcType=VARCHAR}, #{oTime,jdbcType=TIMESTAMP}, 
-      #{oTag,jdbcType=VARCHAR}, #{oPrice,jdbcType=DOUBLE})
-  </insert>
-  <insert id="insertSelective" parameterType="com.whereguesthome.pojo.Order">
-    insert into order
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="oId != null">
-        o_id,
-      </if>
-      <if test="uId != null">
-        u_id,
-      </if>
-      <if test="oRealname != null">
-        o_realname,
-      </if>
-      <if test="oAddress != null">
-        o_address,
-      </if>
-      <if test="oZip != null">
-        o_zip,
-      </if>
-      <if test="oPhone != null">
-        o_phone,
-      </if>
-      <if test="oPayment != null">
-        o_payment,
-      </if>
-      <if test="oRemarks != null">
-        o_remarks,
-      </if>
-      <if test="oTime != null">
-        o_time,
-      </if>
-      <if test="oTag != null">
-        o_tag,
-      </if>
-      <if test="oPrice != null">
-        o_price,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="oId != null">
-        #{oId,jdbcType=INTEGER},
-      </if>
-      <if test="uId != null">
-        #{uId,jdbcType=INTEGER},
-      </if>
-      <if test="oRealname != null">
-        #{oRealname,jdbcType=VARCHAR},
-      </if>
-      <if test="oAddress != null">
-        #{oAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="oZip != null">
-        #{oZip,jdbcType=VARCHAR},
-      </if>
-      <if test="oPhone != null">
-        #{oPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="oPayment != null">
-        #{oPayment,jdbcType=VARCHAR},
-      </if>
-      <if test="oRemarks != null">
-        #{oRemarks,jdbcType=VARCHAR},
-      </if>
-      <if test="oTime != null">
-        #{oTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="oTag != null">
-        #{oTag,jdbcType=VARCHAR},
-      </if>
-      <if test="oPrice != null">
-        #{oPrice,jdbcType=DOUBLE},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.whereguesthome.pojo.Order">
-    update order
-    <set>
-      <if test="uId != null">
-        u_id = #{uId,jdbcType=INTEGER},
-      </if>
-      <if test="oRealname != null">
-        o_realname = #{oRealname,jdbcType=VARCHAR},
-      </if>
-      <if test="oAddress != null">
-        o_address = #{oAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="oZip != null">
-        o_zip = #{oZip,jdbcType=VARCHAR},
-      </if>
-      <if test="oPhone != null">
-        o_phone = #{oPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="oPayment != null">
-        o_payment = #{oPayment,jdbcType=VARCHAR},
-      </if>
-      <if test="oRemarks != null">
-        o_remarks = #{oRemarks,jdbcType=VARCHAR},
-      </if>
-      <if test="oTime != null">
-        o_time = #{oTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="oTag != null">
-        o_tag = #{oTag,jdbcType=VARCHAR},
-      </if>
-      <if test="oPrice != null">
-        o_price = #{oPrice,jdbcType=DOUBLE},
-      </if>
-    </set>
-    where o_id = #{oId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.whereguesthome.pojo.Order">
-    update order
-    set u_id = #{uId,jdbcType=INTEGER},
-      o_realname = #{oRealname,jdbcType=VARCHAR},
-      o_address = #{oAddress,jdbcType=VARCHAR},
-      o_zip = #{oZip,jdbcType=VARCHAR},
-      o_phone = #{oPhone,jdbcType=VARCHAR},
-      o_payment = #{oPayment,jdbcType=VARCHAR},
-      o_remarks = #{oRemarks,jdbcType=VARCHAR},
-      o_time = #{oTime,jdbcType=TIMESTAMP},
-      o_tag = #{oTag,jdbcType=VARCHAR},
-      o_price = #{oPrice,jdbcType=DOUBLE}
-    where o_id = #{oId,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.whereguesthome.pojo.Order">
+		<id column="o_id" jdbcType="INTEGER" property="oId" />
+		<result column="u_id" jdbcType="INTEGER" property="uId" />
+		<result column="o_realname" jdbcType="VARCHAR" property="oRealname" />
+		<result column="o_address" jdbcType="VARCHAR" property="oAddress" />
+		<result column="o_zip" jdbcType="VARCHAR" property="oZip" />
+		<result column="o_phone" jdbcType="VARCHAR" property="oPhone" />
+		<result column="o_payment" jdbcType="VARCHAR" property="oPayment" />
+		<result column="o_remarks" jdbcType="VARCHAR" property="oRemarks" />
+		<result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
+		<result column="o_tag" jdbcType="VARCHAR" property="oTag" />
+		<result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+	</resultMap>
+
+	<resultMap id="order-result" type="com.whereguesthome.pojo.Order">
+		<id column="o_id" jdbcType="INTEGER" property="oId" />
+		<result column="u_id" jdbcType="INTEGER" property="uId" />
+		<result column="o_realname" jdbcType="VARCHAR" property="oRealname" />
+		<result column="o_address" jdbcType="VARCHAR" property="oAddress" />
+		<result column="o_zip" jdbcType="VARCHAR" property="oZip" />
+		<result column="o_phone" jdbcType="VARCHAR" property="oPhone" />
+		<result column="o_payment" jdbcType="VARCHAR" property="oPayment" />
+		<result column="o_remarks" jdbcType="VARCHAR" property="oRemarks" />
+		<result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
+		<result column="o_tag" jdbcType="VARCHAR" property="oTag" />
+		<result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+	</resultMap>
+
+	<select id="queryOrderByOdel" parameterType="java.lang.Integer"
+		resultMap="order-result">
+		select from order where
+		o.oid,o.uid,o.oRealname,o.oZip,o.oPhone,
+		o.oPayment,o.oRemarks,o.oTime,o.oTag,o.oPrice from order o where
+		u_id=#{uId} and oDel=0
+	</select>
+	<!--一个订单对应多个商品 -->
+	<select id="select" parameterType="java.lang.Integer" resultMap="orders">
+		select i.o_id,g.* from items i INNER JOIN goods g on
+		i.g_id=g.g_id
+		WHERE i.o_id=#{o_orderId}
+	</select>
+
+	<resultMap type="com.whereguesthome.pojo.OrderItems" id="orders">
+		<id column="o_id" property="oId" />
+		<collection property="goods" ofType="com.whereguesthome.pojo.Goods">
+			<id column="g_id" property="gId"></id>
+			<result column="g_name" property="gName" />
+			<result column="g_price" property="gPrice" />
+			<result column="g_saleprice" property="gSaleprice" />
+			<result column="g_describes" property="gDescribes" />
+			<result column="g_contents" property="gContents" />
+			<result column="g_photo" property="gPhoto" />
+			<result column="g_repertory" property="gRepertory" />
+			<result column="g_saledate" property="gSaledate" />
+			<result column="s_id" property="sId" />
+			<result column="g_status" property="gStatus" />
+		</collection>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		o_id, u_id, o_realname, o_address, o_zip, o_phone,
+		o_payment, o_remarks,
+		o_time,
+		o_tag, o_price
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from order
+		where o_id = #{oId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from order
+		where o_id = #{oId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.whereguesthome.pojo.Order">
+		insert into `order` (o_id,
+		u_id, o_realname,
+		o_address, o_zip, o_phone,
+		o_payment, o_remarks,
+		o_time,
+		o_tag, o_price)
+		values (#{oId,jdbcType=INTEGER},
+		#{uId,jdbcType=INTEGER},
+		#{oRealname,jdbcType=VARCHAR},
+		#{oAddress,jdbcType=VARCHAR}, #{oZip,jdbcType=VARCHAR},
+		#{oPhone,jdbcType=VARCHAR},
+		#{oPayment,jdbcType=VARCHAR},
+		#{oRemarks,jdbcType=VARCHAR},#{oTime,jdbcType=VARCHAR},
+		#{oTag,jdbcType=VARCHAR}, #{oPrice,jdbcType=DOUBLE})
+	</insert>
+	<insert id="insertSelective" parameterType="com.whereguesthome.pojo.Order">
+		insert into `order`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="oId != null">
+				o_id,
+			</if>
+			<if test="uId != null">
+				u_id,
+			</if>
+			<if test="oRealname != null">
+				o_realname,
+			</if>
+			<if test="oAddress != null">
+				o_address,
+			</if>
+			<if test="oZip != null">
+				o_zip,
+			</if>
+			<if test="oPhone != null">
+				o_phone,
+			</if>
+			<if test="oPayment != null">
+				o_payment,
+			</if>
+			<if test="oRemarks != null">
+				o_remarks,
+			</if>
+			<if test="oTime != null">
+				o_time,
+			</if>
+			<if test="oTag != null">
+				o_tag,
+			</if>
+			<if test="oPrice != null">
+				o_price,
+			</if>
+			<if test="o_orderId != null">
+				o_orderId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="oId != null">
+				#{oId,jdbcType=INTEGER},
+			</if>
+			<if test="uId != null">
+				#{uId,jdbcType=INTEGER},
+			</if>
+			<if test="oRealname != null">
+				#{oRealname,jdbcType=VARCHAR},
+			</if>
+			<if test="oAddress != null">
+				#{oAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="oZip != null">
+				#{oZip,jdbcType=VARCHAR},
+			</if>
+			<if test="oPhone != null">
+				#{oPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="oPayment != null">
+				#{oPayment,jdbcType=VARCHAR},
+			</if>
+			<if test="oRemarks != null">
+				#{oRemarks,jdbcType=VARCHAR},
+			</if>
+			<if test="oTime != null">
+				#{oTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="oTag != null">
+				#{oTag,jdbcType=VARCHAR},
+			</if>
+			<if test="oPrice != null">
+				#{oPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="o_orderId != null">
+				#{o_orderId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.whereguesthome.pojo.Order">
+		update order
+		<set>
+			<if test="uId != null">
+				u_id = #{uId,jdbcType=INTEGER},
+			</if>
+			<if test="oRealname != null">
+				o_realname = #{oRealname,jdbcType=VARCHAR},
+			</if>
+			<if test="oAddress != null">
+				o_address = #{oAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="oZip != null">
+				o_zip = #{oZip,jdbcType=VARCHAR},
+			</if>
+			<if test="oPhone != null">
+				o_phone = #{oPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="oPayment != null">
+				o_payment = #{oPayment,jdbcType=VARCHAR},
+			</if>
+			<if test="oRemarks != null">
+				o_remarks = #{oRemarks,jdbcType=VARCHAR},
+			</if>
+			<if test="oTime != null">
+				o_time = #{oTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="oTag != null">
+				o_tag = #{oTag,jdbcType=VARCHAR},
+			</if>
+			<if test="oPrice != null">
+				o_price = #{oPrice,jdbcType=DOUBLE},
+			</if>
+		</set>
+		where o_id = #{oId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.whereguesthome.pojo.Order">
+		update order
+		set
+		u_id = #{uId,jdbcType=INTEGER},
+		o_realname =
+		#{oRealname,jdbcType=VARCHAR},
+		o_address =
+		#{oAddress,jdbcType=VARCHAR},
+		o_zip = #{oZip,jdbcType=VARCHAR},
+		o_phone
+		= #{oPhone,jdbcType=VARCHAR},
+		o_payment = #{oPayment,jdbcType=VARCHAR},
+		o_remarks = #{oRemarks,jdbcType=VARCHAR},
+		o_time =
+		#{oTime,jdbcType=TIMESTAMP},
+		o_tag = #{oTag,jdbcType=VARCHAR},
+		o_price =
+		#{oPrice,jdbcType=DOUBLE}
+		where o_id = #{oId,jdbcType=INTEGER}
+	</update>
+	<!-- 根据用户id查询订单 -->
+	<select id="selectAll" parameterType="java.lang.Integer"
+		resultMap="order-result">
+		SELECT * from
+		`order` WHERE u_id =#{uId}
+	</select>
+	<!-- //根据订单编号查询订单信息 -->
+	<select id="selectById" parameterType="java.lang.String"
+		resultMap="order-result">
+		SELECT * from
+		`order` WHERE o_orderId = #{o_orderId}
+	</select>
 </mapper>

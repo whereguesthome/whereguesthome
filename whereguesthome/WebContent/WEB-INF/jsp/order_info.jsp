@@ -35,7 +35,6 @@ body {
 <body>
 
 	<%@include file="/WEB-INF/jsp/head.jsp"%>
-
 	<div class="container">
 		<div class="row">
 
@@ -72,74 +71,83 @@ body {
 
 		<div>
 			<hr />
-			<form id="orderForm" action="index.jsp" class="form-horizontal"
-				style="margin-top: 5px; margin-left: 150px;">
+			<form id="orderForm"
+				action="${pageContext.request.contextPath}/admin/user/add"
+				class="form-horizontal" style="margin-top: 5px; margin-left: 150px;"
+				method="post">
+				<c:forEach items="${shopcar1 }" var="s">
+				<input type="hidden" name="gid"value="${s.goods.gId }">
+				</c:forEach>
+				<input type="hidden" name="uId" value="${user.uId }"> <input
+					type="hidden" name="oPrice" value="${sums }">
 				<div class="form-group">
 					<label for="username" class="col-sm-1 control-label">地址</label>
 					<div class="col-sm-5">
 						<input type="text" class="form-control" id="username"
-							placeholder="请输入收货地址">
+							name="oAddress" placeholder="请输入收货地址">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-1 control-label">收货人</label>
 					<div class="col-sm-5">
-						<input type="password" class="form-control" id="inputPassword3"
-							placeholder="请输收货人">
+						<input type="text" class="form-control" id="inputPassword3"
+							name="oRealname" placeholder="请输收货人">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="confirmpwd" class="col-sm-1 control-label">电话</label>
 					<div class="col-sm-5">
-						<input type="password" class="form-control" id="confirmpwd"
-							placeholder="请输入联系方式">
+						<input type="text" class="form-control" id="confirmpwd"
+							name="oPhone" placeholder="请输入联系方式">
 					</div>
 				</div>
+
+
+				<hr />
+
+				<div style="margin-top: 5px; margin-left: 150px;">
+					<strong>选择银行：</strong>
+					<p>
+						<br /> <input type="radio" name="oPayment" value="ICBC-NET-B2C"
+							checked="checked" />工商银行 <img
+							src="${pageContext.request.contextPath}/bank_img/icbc.bmp"
+							align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
+							name="oPayment" value="BOC-NET-B2C" />中国银行 <img
+							src="${pageContext.request.contextPath}/bank_img/bc.bmp"
+							align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
+							name="oPayment" value="ABC-NET-B2C" />农业银行 <img
+							src="${pageContext.request.contextPath}/bank_img/abc.bmp"
+							align="middle" /> <br /> <br /> <input type="radio"
+							name="oPayment" value="BOCO-NET-B2C" />交通银行 <img
+							src="${pageContext.request.contextPath}/bank_img/bcc.bmp"
+							align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
+							name="oPayment" value="PINGANBANK-NET" />平安银行 <img
+							src="${pageContext.request.contextPath}/bank_img/pingan.bmp"
+							align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
+							name="oPayment" value="CCB-NET-B2C" />建设银行 <img
+							src="${pageContext.request.contextPath}/bank_img/ccb.bmp"
+							align="middle" /> <br /> <br /> <input type="radio"
+							name="oPayment" value="CEB-NET-B2C" />光大银行 <img
+							src="${pageContext.request.contextPath}/bank_img/guangda.bmp"
+							align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
+							name="oPayment" value="CMBCHINA-NET-B2C" />招商银行 <img
+							src="${pageContext.request.contextPath}/bank_img/cmb.bmp"
+							align="middle" />
+
+					</p>
+					<hr />
+					<p style="text-align: right; margin-right: 100px;">
+						<a
+							href="javascript:document.getElementById('orderForm').submit();">
+							<img
+							src="${pageContext.request.contextPath}/images/finalbutton.gif"
+							width="204" height="51" border="0" />
+						</a>
+					</p>
+					<hr />
+
+				</div>
 			</form>
-
-			<hr />
-
-			<div style="margin-top: 5px; margin-left: 150px;">
-				<strong>选择银行：</strong>
-				<p>
-					<br /> <input type="radio" name="pd_FrpId" value="ICBC-NET-B2C"
-						checked="checked" />工商银行 <img
-						src="${pageContext.request.contextPath}/bank_img/icbc.bmp"
-						align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
-						name="pd_FrpId" value="BOC-NET-B2C" />中国银行 <img
-						src="${pageContext.request.contextPath}/bank_img/bc.bmp"
-						align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
-						name="pd_FrpId" value="ABC-NET-B2C" />农业银行 <img
-						src="${pageContext.request.contextPath}/bank_img/abc.bmp"
-						align="middle" /> <br /> <br /> <input type="radio"
-						name="pd_FrpId" value="BOCO-NET-B2C" />交通银行 <img
-						src="${pageContext.request.contextPath}/bank_img/bcc.bmp"
-						align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
-						name="pd_FrpId" value="PINGANBANK-NET" />平安银行 <img
-						src="${pageContext.request.contextPath}/bank_img/pingan.bmp"
-						align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
-						name="pd_FrpId" value="CCB-NET-B2C" />建设银行 <img
-						src="${pageContext.request.contextPath}/bank_img/ccb.bmp"
-						align="middle" /> <br /> <br /> <input type="radio"
-						name="pd_FrpId" value="CEB-NET-B2C" />光大银行 <img
-						src="${pageContext.request.contextPath}/bank_img/guangda.bmp"
-						align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
-						name="pd_FrpId" value="CMBCHINA-NET-B2C" />招商银行 <img
-						src="${pageContext.request.contextPath}/bank_img/cmb.bmp"
-						align="middle" />
-
-				</p>
-				<hr />
-				<p style="text-align: right; margin-right: 100px;">
-					<a href="javascript:document.getElementById('orderForm').submit();">
-						<img
-						src="${pageContext.request.contextPath}/images/finalbutton.gif"
-						width="204" height="51" border="0" />
-					</a>
-				</p>
-				<hr />
-
-			</div>
 		</div>
 
 	</div>

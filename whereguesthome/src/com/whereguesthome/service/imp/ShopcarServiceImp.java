@@ -69,7 +69,7 @@ public class ShopcarServiceImp implements ShopcarService {
 
 	// 修改商品的数量
 	// 只能添加商品数量
-	//提交订单
+	// 提交订单
 	@Override
 	public void modifyShopcarIndex(Integer[] gid, HttpSession session, Double sums, Model model) {
 		User user = (User) session.getAttribute("user");
@@ -79,8 +79,6 @@ public class ShopcarServiceImp implements ShopcarService {
 			for (Integer i : gid) {
 				shopcar = shopcarMapper.findShopcarList1(user.getuId(), i);
 				shopcar1.add(shopcar);
-				//删除购物车里提交的
-                shopcarMapper.deleteShopcarById(user.getuId(), i);
 			}
 		}
 		if (sums != null) {

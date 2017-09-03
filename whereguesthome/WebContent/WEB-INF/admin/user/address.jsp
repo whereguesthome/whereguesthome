@@ -16,6 +16,20 @@
 <script src="${pageContext.request.contextPath}/js/iCheck.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/js/custom.js" type="text/javascript"></script>
 <title>用户中心-收货地址</title>
+<script type="text/javascript">
+ window.onload = function() {
+  var show = document.getElementById("show");
+  setInterval(function() {
+   var time = new Date();
+   // 程序计时的月从0开始取值后+1
+   var m = time.getMonth() + 1;
+   var t = time.getFullYear() + "-" + m + "-"
+     + time.getDate() + " " + time.getHours() + ":"
+     + time.getMinutes() + ":" + time.getSeconds();
+   show.innerHTML = t;
+  }, 1000);
+ };
+</script>
 </head>
 
 <body>
@@ -95,8 +109,8 @@
       <div class="background_img"></div>
       </div>
       <div class="user_name">
-       <p><span class="name">化海天堂</span><a href="#">[修改密码]</a></p>
-       <p>访问时间：2016-1-21 10:23</p>
+       <p><span class="name">${user.uName }</span><a href="#">[修改密码]</a></p>
+       <p><div id="show"></div></p>
        </div>           
      </div>
      <div class="sideMen">
