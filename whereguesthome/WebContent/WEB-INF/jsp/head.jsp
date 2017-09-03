@@ -23,7 +23,7 @@
 						
 						<c:if test="${not empty user}">
 						   ${user.uName }:你好
-					   <li><a href="${pageContext.request.contextPath}/admin/user/content.jsp">个人中心</a></li>					   	
+					   <li><a href="${pageContext.request.contextPath}/admin/user/gos">个人中心</a></li>					   	
 					   <li><a href="cart">购物车</a></li>
 					   <li><form action="logout">
 					   <a href="${pageContext.request.contextPath}/jsp/logout">退出</a>

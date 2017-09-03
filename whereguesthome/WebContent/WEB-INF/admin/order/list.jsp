@@ -1,11 +1,13 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="${pageContext.request.contextPath}/css/Style1.css" rel="stylesheet" type="text/css" />
 		<script language="javascript" src="${pageContext.request.contextPath}/js/public.js"></script>
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 			function showDetail(oid){
 				var but = document.getElementById("but"+oid);
 				var div1 = document.getElementById("div"+oid);
@@ -51,7 +53,7 @@
 
 					return xmlHttp;
 				 }
-		</script>
+		</script> -->
 	</HEAD>
 	<body>
 		<br>
@@ -72,69 +74,118 @@
 								<tr
 									style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; HEIGHT: 25px; BACKGROUND-COLOR: #afd1f3">
 
-									<td align="center" width="10%">
-										序号
-									</td>
-									<td align="center" width="10%">
+									<td align="center" >
 										订单编号
 									</td>
-									<td align="center" width="10%">
-										订单金额
+									<td align="center" >
+										用户编号	
 									</td>
-									<td align="center" width="10%">
-										收货人
+									<td align="center" >
+										收货人姓名
 									</td>
-									<td align="center" width="10%">
+									<td align="center" >
+										收货地址
+									</td>
+									<td align="center" >
+										邮编
+									</td>
+									<td align="center" >
+										电话
+									</td>
+									<td align="center" >
+										支付方式
+									</td>
+									
+									<td align="center" >
+										备注
+									</td>
+									
+									<td align="center" >
+										下单时间
+									</td>
+									
+									<td align="center" >
 										订单状态
 									</td>
-									<td align="center" width="50%">
+									
+									<td align="center" >
+										订单价格
+									</td>
+									
+									<td align="center" >
 										订单详情
 									</td>
+									
+									<td align="center" >
+										删除订单
+									</td>
+									
 								</tr>
-									<s:iterator var="o" value="pageBean.list" status="status">
+									<c:forEach items="${ listOrder}" var="l">
 										<tr onmouseover="this.style.backgroundColor = 'white'"
 											onmouseout="this.style.backgroundColor = '#F5FAFE';">
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-												width="18%">
-												<s:property value="#status.count"/>
+												>
+												${l.oId }
 											</td>
-											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-												width="17%">
-												<s:property value="#o.oid"/>
-											</td>
-											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-												width="17%">
-												<s:property value="#o.total"/>
-											</td>
-											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-												width="17%">
-												<s:property value="#o.name"/>
-											</td>
-											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-												width="17%">
-												<s:if test="#o.state==1">
-													未付款
-												</s:if>
-												<s:if test="#o.state==2">
-													<a href="${ pageContext.request.contextPath }/adminOrder_updateState.action?oid=<s:property value="#o.oid"/>"><font color="blue">发货</font></a>
-												</s:if>
-												<s:if test="#o.state==3">
-													等待确认收货
-												</s:if>
-												<s:if test="#o.state==4">
-													订单完成
-												</s:if>
 											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.uId}
 											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.oRealname}
+											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.oAddress}
+											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.oZip}
+											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.oPhone}
+											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.oPayment}
+											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.oRemarks}
+											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												<fmt:formatDate value="${l.oTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.oTag}
+											</td>
+											
+											<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+												${l.oPrice}
+											</td>
+											
 											<td align="center" style="HEIGHT: 22px">
-												<input type="button" value="订单详情" id="but<s:property value="#o.oid"/>" onclick="showDetail(<s:property value="#o.oid"/>)"/>
-												<div id="div<s:property value="#o.oid"/>">
-													
-												</div>
+											
+												<a
+										href="javascript:go('${l.oId }','${l.uId}')">
+													<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
+												</a>
 											</td>
-							
+									
+											<td align="center" style="HEIGHT: 22px">
+												<a href="${l.oId }/delete">
+													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
+												</a>
+											</td>
+											
+											
 										</tr>
-									</s:iterator>	
+									</c:forEach>
 							</table>
 						</td>
 					</tr>
@@ -154,6 +205,22 @@
 				</TBODY>
 			</table>
 		</form>
+		
+		<form id="pageForm2" action="xianqing" method="post">
+		
+		<input type="hidden" name ="oId" id= "oId" value="">
+		<input type="hidden" name ="uId" id= "uId" value="">	
+	</form>
 	</body>
+	
+	<script type="text/javascript">
+		function go(id1,id2){
+			
+			document.getElementById("oId").value = id1;
+			document.getElementById("uId").value = id2;
+			
+			document.getElementById("pageForm2").submit();
+		}
+	</script>
 </HTML>
 

@@ -13,6 +13,7 @@
 			}		
 		</script>
 	</HEAD>
+	
 	<body>
 		<br>
 		<form id="Form1" name="Form1" action="${pageContext.request.contextPath}/user/list.jsp" method="post">

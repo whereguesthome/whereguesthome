@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.whereguesthome.pojo.Goods;
+import com.whereguesthome.pojo.GoodsItems;
 import com.whereguesthome.pojo.Sort;
 
 /**
@@ -63,5 +64,6 @@ public interface GoodsMapper {
 	//后台根据分类编号查询总记录数
 	int getTotalRecord2(@Param("sId") Integer sId,@Param("gSprice" ) Double gSprice,
 				@Param("gSprice2" ) Double gSprice2,@Param("name") String name);
+	
 
 }

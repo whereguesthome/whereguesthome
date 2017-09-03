@@ -24,8 +24,18 @@ public class Order {
     private String oTag;
 
     private Double oPrice;
+    
+    private Integer oDel;
 
-    public Integer getoId() {
+    public Integer getoDel() {
+		return oDel;
+	}
+
+	public void setoDel(Integer oDel) {
+		this.oDel = oDel;
+	}
+
+	public Integer getoId() {
         return oId;
     }
 

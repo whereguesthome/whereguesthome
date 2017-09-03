@@ -14,6 +14,29 @@
     <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
     <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
   </resultMap>
+    
+      <resultMap id="order-result" type="com.whereguesthome.pojo.Order">
+    <id column="o_id" jdbcType="INTEGER" property="oId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="o_realname" jdbcType="VARCHAR" property="oRealname" />
+    <result column="o_address" jdbcType="VARCHAR" property="oAddress" />
+    <result column="o_zip" jdbcType="VARCHAR" property="oZip" />
+    <result column="o_phone" jdbcType="VARCHAR" property="oPhone" />
+    <result column="o_payment" jdbcType="VARCHAR" property="oPayment" />
+    <result column="o_remarks" jdbcType="VARCHAR" property="oRemarks" />
+    <result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
+    <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
+    <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+  </resultMap>
+  
+  <select id="queryOrderByOdel" parameterType="java.lang.Integer"  resultMap="order-result">
+  	select  from order where o.oid,o.uid,o.oRealname,o.oZip,o.oPhone,
+  	o.oPayment,o.oRemarks,o.oTime,o.oTag,o.oPrice from order o where
+    u_id=#{uId} and oDel=0
+  </select>
+  
+  
+  
   <sql id="Base_Column_List">
     o_id, u_id, o_realname, o_address, o_zip, o_phone, o_payment, o_remarks, o_time, 
     o_tag, o_price
