@@ -2,6 +2,8 @@ package com.whereguesthome.service.imp;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -61,6 +63,20 @@ public class AdminOrderServiceImp implements AdminOrderService{
 		}else{
 			model.addAttribute("msg", "没有数据！");
 		}
+	}
+
+	@Override
+	public void selectAllDim(HttpServletRequest request,Model model) {
+		
+		String mName = "%"+request.getParameter("shuru")+"%";
+		List<Order> listOrder = adminOrderMapper.selectAllDim(mName);
+		
+		if(listOrder!=null&&listOrder.size()!=0){
+			model.addAttribute("listOrder", listOrder);
+		}else{
+			model.addAttribute("dimMsg", "没有数据");
+		}
+		
 	}
 
 }

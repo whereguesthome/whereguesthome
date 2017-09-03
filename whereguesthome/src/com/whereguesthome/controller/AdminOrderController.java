@@ -1,5 +1,7 @@
 package com.whereguesthome.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,5 +45,12 @@ public class AdminOrderController {
 		}
 		
 		
+	}
+	
+	@RequestMapping(value="dim" ,method=RequestMethod.POST)
+	public String dimSelectAll(HttpServletRequest request,Model model){
+		
+		adminOrderService.selectAllDim(request, model);
+		return "admin/order/list";
 	}
 }

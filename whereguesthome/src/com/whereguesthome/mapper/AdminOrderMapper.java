@@ -20,4 +20,7 @@ public interface AdminOrderMapper {
 	    List<Order> selectAll();
 	    
 		List<GoodsItems> gfindAll(@Param("uId") Integer uId);
+		
+		//模糊查询
+		List<Order> selectAllDim(@Param("name") String mName);
 }

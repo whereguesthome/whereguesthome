@@ -57,7 +57,7 @@
 	</HEAD>
 	<body>
 		<br>
-		<form id="Form1" name="Form1" action="${pageContext.request.contextPath}/user/list.jsp" method="post">
+		<form id="Form1" name="Form1" action="dim" method="post">
 			<table cellSpacing="1" cellPadding="0" width="100%" align="center" bgColor="#f5fafe" border="0">
 				<TBODY>
 					<tr>
@@ -65,7 +65,18 @@
 							<strong>订单列表</strong>
 						</TD>
 					</tr>
-					
+					<tr>
+					<td>
+					<div>
+	
+					<input size="23" type="text" id="shuru" name="shuru" value="请输入订单编号或者用户姓名" 
+					onfocus="javascript:if(this.value=='请输入订单编号或者用户姓名')this.value='';this.type='text'"
+					onblur="javascript:if(this.value=='')this.value='请输入订单编号或者用户姓名';this.type='text'">
+					<a>&nbsp;
+					</a>
+					<button>查询</button>
+					</div></td>
+					</tr>
 					<tr>
 						<td class="ta_01" align="center" bgColor="#f5fafe">
 							<table cellspacing="0" cellpadding="1" rules="all"
@@ -178,7 +189,8 @@
 											</td>
 									
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${l.oId }/delete">
+												<%-- <a href="${l.oId }/delete"> --%>
+												<a href="javascript: if(window.confirm('是否删除？')){window.location.href='${l.oId }/delete'}" >  
 													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
 												</a>
 											</td>
@@ -186,10 +198,11 @@
 											
 										</tr>
 									</c:forEach>
+				
 							</table>
 						</td>
 					</tr>
-					<tr align="center">
+					<%-- <tr align="center">
 						<td colspan="7">
 							第<s:property value="pageBean.page"/>/<s:property value="pageBean.totalPage"/>页 
 							<s:if test="pageBean.page != 1">
@@ -201,8 +214,20 @@
 								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=<s:property value="pageBean.totalPage"/>">尾页</a>|
 							</s:if>
 						</td>
-					</tr>
+					</tr> --%>
 				</TBODY>
+				
+					<tr >
+					<td class="ta_01" style="WIDTH: 100%" align="center"
+						bgColor="#f5fafe" colSpan="4">
+
+						<FONT face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT>
+						<div align="right">
+						<INPUT class="button_ok" type="button" onclick="history.go(-1)" value="返回"/>
+						</div>
+						<span id="Label1"></span>
+					</td>
+				</tr>
 			</table>
 		</form>
 		
@@ -221,6 +246,7 @@
 			
 			document.getElementById("pageForm2").submit();
 		}
+		
 	</script>
 </HTML>
 

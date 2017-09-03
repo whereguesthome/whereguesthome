@@ -1,5 +1,7 @@
 package com.whereguesthome.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 
 import com.whereguesthome.pojo.Order;
@@ -16,4 +18,5 @@ public interface AdminOrderService {
 
     void selectAll(Model model);
 	
+    void selectAllDim(HttpServletRequest request,Model model);
 }
