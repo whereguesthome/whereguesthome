@@ -1,21 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whereguesthome.mapper.ShopcarMapper">
-<!--  根据用户id查询当前用户购买的商品 -->
-<!-- 一对多 -->
-<select id="findShopcarList" resultMap="ShopcarGoods" parameterType="java.lang.Integer">
-select s.*,g.* from shopcar s INNER JOIN goods g on s.g_id=g.g_id WHERE s.u_id=#{u_id}
-</select>
-<resultMap type="com.whereguesthome.pojo.Shopcar" id="ShopcarGoods">
-  <result column="s_num" property="s_num"/>
-  <collection property="goods" javaType="com.whereguesthome.pojo.Goods">
-   <id column="g_id" property="gId"></id>
-  <result column="g_name" property="gName"/>
-  <result column="g_price" property="gPrice"/>
-  <result column="g_saleprice" property="gSaleprice"/>
-  <result column="g_describes" property="gDescribes"/>
-  <result column="g_photo" property="gPhoto"/>
-  </collection>
-</resultMap>
+	<!-- 根据用户id查询当前用户购买的商品 -->
+	<!-- 一对多 -->
+	<select id="findShopcarList" resultMap="ShopcarGoods"
+		parameterType="java.lang.Integer">
+		select s.*,g.* from shopcar s INNER JOIN goods g on s.g_id=g.g_id WHERE
+		s.u_id=#{u_id}
+	</select>
+	<resultMap type="com.whereguesthome.pojo.Shopcar" id="ShopcarGoods">
+		<result column="s_num" property="s_num" />
+		<collection property="goods" javaType="com.whereguesthome.pojo.Goods">
+			<id column="g_id" property="gId"></id>
+			<result column="g_name" property="gName" />
+			<result column="g_price" property="gPrice" />
+			<result column="g_saleprice" property="gSaleprice" />
+			<result column="g_describes" property="gDescribes" />
+			<result column="g_photo" property="gPhoto" />
+		</collection>
+	</resultMap>
+
+	<!-- 根据用户id查询当前用户购买的商品 -->
+	<!-- 一对多 -->
+	<select id="findShopcarList1" resultMap="ShopcarGoods1"
+		parameterType="java.lang.Integer">
+		select s.*,g.* from shopcar s INNER JOIN goods g on s.g_id=g.g_id WHERE
+		s.u_id=#{u_id} AND g.g_id=#{g_id}
+	</select>
+	<resultMap type="com.whereguesthome.pojo.Shopcar" id="ShopcarGoods1">
+		<result column="s_num" property="s_num" />
+		<collection property="goods" javaType="com.whereguesthome.pojo.Goods">
+			<id column="g_id" property="gId"></id>
+			<result column="g_name" property="gName" />
+			<result column="g_price" property="gPrice" />
+			<result column="g_saleprice" property="gSaleprice" />
+			<result column="g_describes" property="gDescribes" />
+			<result column="g_photo" property="gPhoto" />
+		</collection>
+	</resultMap>
 
 </mapper>

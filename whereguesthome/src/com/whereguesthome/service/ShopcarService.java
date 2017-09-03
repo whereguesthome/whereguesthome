@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
 import com.whereguesthome.pojo.Shopcar;
+import com.whereguesthome.pojo.ShopcarQueryVo;
 
 
 /**
@@ -26,7 +27,7 @@ public interface ShopcarService {
 	void deleteShopcarById(Integer[] gid, Model model,HttpSession session);
 
 	// 修改商品的数量
-	void modifyShopcarIndex(Shopcar shopcar);
+	void modifyShopcarIndex(Integer[] gid,HttpSession session,Double sums,Model model);
 
 	// 添加商品到购物车ﳵ
 	void addShopcar(Shopcar shopcar, HttpSession session,HttpServletResponse response);

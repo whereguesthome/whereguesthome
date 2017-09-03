@@ -1,6 +1,7 @@
 package com.whereguesthome.service.imp;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.whereguesthome.mapper.ShopcarMapper;
 import com.whereguesthome.pojo.Shopcar;
-
+import com.whereguesthome.pojo.ShopcarQueryVo;
 import com.whereguesthome.pojo.User;
 import com.whereguesthome.service.ShopcarService;
 
@@ -36,7 +37,10 @@ public class ShopcarServiceImp implements ShopcarService {
 		if (user == null) {
 			model.addAttribute("msg", "请登录");
 		} else {
-			/*List<Shopcar> shopcar = shopcarMapper.findShopcarList(user.getuId());*/
+			/*
+			 * List<Shopcar> shopcar =
+			 * shopcarMapper.findShopcarList(user.getuId());
+			 */
 			List<Shopcar> shopcar = shopcarMapper.findShopcarList(13);
 			model.addAttribute("shopcar", shopcar);
 		}
@@ -65,11 +69,25 @@ public class ShopcarServiceImp implements ShopcarService {
 
 	// 修改商品的数量
 	// 只能添加商品数量
+	//提交订单
 	@Override
-	public void modifyShopcarIndex(Shopcar shopcar) {
-		if (shopcar != null) {
-			shopcarMapper.updateShopcarById(shopcar);
+	public void modifyShopcarIndex(Integer[] gid, HttpSession session, Double sums, Model model) {
+		User user = (User) session.getAttribute("user");
+		List<Shopcar> shopcar1 = new ArrayList<>();
+		Shopcar shopcar = null;
+		if (gid != null) {
+			for (Integer i : gid) {
+				shopcar = shopcarMapper.findShopcarList1(user.getuId(), i);
+				shopcar1.add(shopcar);
+				//删除购物车里提交的
+                shopcarMapper.deleteShopcarById(user.getuId(), i);
+			}
 		}
+		if (sums != null) {
+			session.setAttribute("sums", sums);
+		}
+		model.addAttribute("shopcar1", shopcar1);
+
 	}
 
 	// 添加商品到购物车

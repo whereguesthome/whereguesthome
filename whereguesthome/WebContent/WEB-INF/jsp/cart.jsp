@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!doctype html>
 <html>
 
@@ -74,6 +75,8 @@ font {
 						$("#jif").text(parseInt(a + c));
 						//金额
 						$("#jr").text(parseInt(b + c));
+						var d = $("#jr").text();
+						$("#jinge").attr("value", d)
 					} else {
 						//当前为不选中状态
 						var c = parseFloat($(this).parent().nextAll(".sping")
@@ -84,17 +87,18 @@ font {
 						//积分
 						$("#jif").text(a - c);
 						//金额
-						$("#jr").text(b - c);
+						var d = $("#jr").text(parseInt(b - c));
+						var d = $("#jr").text();
+						$("#jinge").attr("value", d)
 					}
 				})
-			//批量删除
-			$("#pilsc").click(function(){
-				$("#userForm").attr("action","cart/delete")
-			})
+		//批量删除
+		$("#pilsc").click(function() {
+			$("#userForm").attr("action", "cart/delete")
+		})
 	})
-	//批量删除语句
-	function deleteUsers() {
-		document.userForm.action = "delete";
+	function selectUsers() {
+		document.userForm.action = "${pageContext.request.contextPath}/jsp/cart/modify";
 		document.userForm.submit();
 	}
 </script>
@@ -102,10 +106,8 @@ font {
 
 <body>
 
-  <%@include file="/WEB-INF/jsp/head.jsp" %>
-
-	<form action="${pageContext.request.contextPath }/user/" method="post"
-		name="userForm" id="userForm">
+	<%@include file="/WEB-INF/jsp/head.jsp"%>
+	<form action="cart/modify" method="post" name="userForm" id="userForm">
 		<div class="container">
 			<div class="row">
 
@@ -122,23 +124,27 @@ font {
 								<th>数量</th>
 								<th>小计</th>
 							</tr>
-							<c:forEach items="${shopcar }" var="s">
+							<c:forEach items="${shopcar }" var="s" varStatus="shop">
 								<tr class="active">
 									<td><input type="checkbox" name="gid"
-										value="${s.goods.gId}" class="sz"></td>
-									<td width="60" width="40%"><input type="hidden" name="id"
-										value="22"> <img
-										src="${pageContext.request.contextPath}/image/dadonggua.jpg"
+										value="${s.goods.gId}" class="sz"><span>选中</span></td>
+									<td width="60" width="40%"><input type="hidden"
+										name="shopcars[${shop.index }].u_id" value="user.uId">
+										<img
+										src="${s.goods.gPhoto }"
 										width="70" height="60"></td>
 									<td width="30%"><a target="_blank">${s.goods.gName }</a></td>
 									<td width="20%">${s.goods.gSaleprice }</td>
 									<td width="10%" class="shul"><input type="text"
-										name="quantity" value="${s.s_num }" maxlength="4" size="10"></td>
-									<td width="15%" class="sping"><span class="subtotal">${s.goods.gSaleprice*s.s_num }</span></td>
+										name="shopcars[${shop.index }].s_num" value="${s.s_num }"
+										maxlength="4" size="10"></td>
+									<td width="15%" class="sping"><span class="subtotal">${s.goods.gSaleprice*s.s_num }</span>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
+					<input type="hidden" name="sums" value="" id="jinge" />
 				</div>
 			</div>
 
@@ -150,11 +156,11 @@ font {
 				</div>
 				<div
 					style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
-					<input type="submit" value="批量删除" id="pilsc"/>
-					<input
-						type="submit" width="100" value="提交订单" name="submit" border="0"
+					<input type="submit" value="批量删除" id="pilsc" /> <input
+						type="button" width="100" value="提交订单" border="0"
 						style="background: url('${pageContext.request.contextPath}/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-						height:35px;width:100px;color:white;"/>
+						height:35px;width:100px;color:white; "
+						onclick="selectUsers()" />
 				</div>
 			</div>
 		</div>

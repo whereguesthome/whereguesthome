@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.whereguesthome.pojo.Shopcar;
+import com.whereguesthome.pojo.ShopcarQueryVo;
 import com.whereguesthome.service.ShopcarService;
 
 @Controller
@@ -41,9 +42,13 @@ public class ShopcarController {
 	}
 
 	// 修改商品的数量
+
 	@RequestMapping(value = "cart/modify", method = RequestMethod.POST)
-	public void modify(Shopcar shopcar) {
-		shopcarService.modifyShopcarIndex(shopcar);
+	public String modify(Integer[] gid, HttpSession session, Double sums, Model model) {
+		System.out.println("请求参数");
+		shopcarService.modifyShopcarIndex(gid, session, sums, model);
+
+		return "jsp/order_info";
 	}
 
 }
