@@ -60,6 +60,7 @@
     <mvc:resources location="/skins/" mapping="/skins/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>    
     <mvc:resources location="/css/" mapping="/css/**"/>  
+    <mvc:resources location="/picture/" mapping="/picture/**"/>
     <!-- <mvc:resources location="/" mapping="/**"/>  -->
     
 </beans>

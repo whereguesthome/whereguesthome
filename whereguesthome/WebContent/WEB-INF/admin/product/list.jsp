@@ -15,6 +15,7 @@
 	</HEAD>
 	
 	<body>
+
 		<br>
 		<form id="Form1" name="Form1" action="${pageContext.request.contextPath}/user/list.jsp" method="post">
 			<table cellSpacing="1" cellPadding="0" width="100%" align="center" bgColor="#f5fafe" border="0">
@@ -135,7 +136,7 @@
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
 												<c:if test="${g.gPhoto !=null }">
-												<img src="/img/${g.gPhoto}" width="100" height="100"/></c:if>
+												<img src="${pageContext.request.contextPath}/picture/${g.gPhoto}" width="100" height="100"/></c:if>
 											</td>
 											
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"

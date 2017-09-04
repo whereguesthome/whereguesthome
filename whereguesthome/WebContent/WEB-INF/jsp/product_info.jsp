@@ -62,7 +62,7 @@ body {
 				<div class="col-md-6">
 					<img style="opacity: 1; width: 400px; height: 350px;" title=""
 						class="medium"
-						src="${pageContext.request.contextPath}/${goodsBygId.gPhoto}">
+						src="${pageContext.request.contextPath}/picture/${goodsBygId.gPhoto}">
 				</div>
 
 				<div class="col-md-6">

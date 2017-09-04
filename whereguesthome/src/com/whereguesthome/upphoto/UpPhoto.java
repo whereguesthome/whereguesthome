@@ -18,7 +18,8 @@ public class UpPhoto {
         if(photo!=null && originalFilename!=null && originalFilename.length()>0){   
        
         //存储图片的物理路径  
-        String pic_path =request.getSession().getServletContext().getRealPath("/")+ "img/";
+        /*String pic_path =request.getSession().getServletContext().getRealPath("/")+ "img/";*/
+        String pic_path = "C:\\Users\\david\\git\\whereguesthome\\whereguesthome\\WebContent\\picture\\";
 
         System.out.println("lujing+++++++++"+pic_path);
         
