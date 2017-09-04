@@ -177,4 +177,23 @@
 u.u_id = o.u_id and o.o_id = i.o_id and i.g_id = g.g_id and u.u_id = #{uId};
  
  </select>
+ 
+ 
+ <resultMap id="selectAllDim-result" type="com.whereguesthome.pojo.Order">
+   <id column="o_id" jdbcType="INTEGER" property="oId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="o_realname" jdbcType="VARCHAR" property="oRealname" />
+    <result column="o_address" jdbcType="VARCHAR" property="oAddress" />
+    <result column="o_zip" jdbcType="VARCHAR" property="oZip" />
+    <result column="o_phone" jdbcType="VARCHAR" property="oPhone" />
+    <result column="o_payment" jdbcType="VARCHAR" property="oPayment" />
+    <result column="o_remarks" jdbcType="VARCHAR" property="oRemarks" />
+    <result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
+    <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
+    <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+  </resultMap>
+  
+ <select id="selectAllDim" resultMap="selectAllDim-result">
+ select * from `order` where concat(o_id,o_realname) like #{name};
+ </select>
 </mapper>

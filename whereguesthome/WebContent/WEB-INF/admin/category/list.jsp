@@ -68,7 +68,8 @@
 											</td>
 									
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${c.sId }/delete">
+												<%-- <a href="${c.sId }/delete"> --%>
+												<a href="javascript: if(window.confirm('是否删除？')){window.location.href='${c.sId }/delete'}" >
 													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
 												</a>
 											</td>
