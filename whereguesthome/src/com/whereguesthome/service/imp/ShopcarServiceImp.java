@@ -41,7 +41,7 @@ public class ShopcarServiceImp implements ShopcarService {
 			 * List<Shopcar> shopcar =
 			 * shopcarMapper.findShopcarList(user.getuId());
 			 */
-			List<Shopcar> shopcar = shopcarMapper.findShopcarList(13);
+			List<Shopcar> shopcar = shopcarMapper.findShopcarList(user.getuId());
 			model.addAttribute("shopcar", shopcar);
 		}
 	}
