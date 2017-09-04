@@ -25,4 +25,8 @@ public interface UserService {
 	boolean deleteUserById(Integer id, Model model);
 
 	void backgroundUserDisplay(Model model,Integer pageNumbe);
+	
+	int updateUser(User u);
+	
+	User findByuId(String uName);
 }

@@ -128,7 +128,7 @@
       <dt class="transaction_manage"><em class="icon_2"></em>会员管理</dt>
         <dd>
       <ul>
-        <li> <a href="userInfo.jsp"> 用户信息</a></li>
+        <li> <a href="userInfo"> 用户信息</a></li>
         <li><a href="#"> 我的评论</a></li>
       </ul>
     </dd>

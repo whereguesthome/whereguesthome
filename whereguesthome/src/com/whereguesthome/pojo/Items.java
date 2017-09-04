@@ -1,11 +1,12 @@
 package com.whereguesthome.pojo;
 
+//订单项
 public class Items {
-    private Integer oId;
+    private Integer oId;//订单id
 
-    private Integer gId;
+    private Integer gId;//商品id
 
-    private Integer iCount;
+    private Integer iCount;//数量
 
     public Integer getoId() {
         return oId;

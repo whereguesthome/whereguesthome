@@ -18,6 +18,16 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
+   
+	//修改用户信息
+	public int updateUser(User u){
+		
+		return userMapper.updateUser(u);
+	}
+	@Override
+	public User findByuId(String uName) {		
+		return userMapper.findByuId(uName);
+	}
 
 	@Override
 	public int insert(User record) {
@@ -93,4 +103,5 @@ public class UserServiceImp implements UserService {
 		model.addAttribute("users", users);
 	}
 
+	
 }

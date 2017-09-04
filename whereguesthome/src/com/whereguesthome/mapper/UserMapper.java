@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.whereguesthome.pojo.PageBean;
@@ -33,4 +34,11 @@ public interface UserMapper {
 
 	// 分页查询
 	List<User> selectUser(@Param("startIndex")Integer startIndex, @Param("pageNum")Integer pageNum);
+
+	//修改用户信息
+	@Update("update user set u_id=#{uId},u_sex=#{uSex},u_email=#{uEmail},u_account=#{uAccount} where u_name=#{uName}")
+	int updateUser(User u );
+	
+	@Select("select u_id uId,u_name uName,u_sex uSex,u_password uPassword,u_phone uPhone,u_email uEmail,u_account uAccount from user where u_name=#{uName}")
+	User findByuId(String uName);
 }

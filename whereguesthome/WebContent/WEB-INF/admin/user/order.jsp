@@ -189,7 +189,7 @@
 						</dt>
 						<dd>
 							<ul>
-								<li><a href="userInfo.jsp"> 用户信息</a></li>
+								<li><a href="userInfo"> 用户信息</a></li>
 								<li><a href="#"> 我的评论</a></li>
 							</ul>
 						</dd>

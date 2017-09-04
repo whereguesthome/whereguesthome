@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,21 +22,35 @@
 
 <body>
 <head>
- <div id="header_top">
-  <div id="top">
-    <div class="Inside_pages">
-      <div class="Collection"><a href="#" class="green">请登录</a> <a href="#" class="green">免费注册</a></div>
-	<div class="hd_top_manu clearfix">
-	  <ul class="clearfix">
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">首页</a></li> 
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
-       <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
-        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(23)</b></a></li>	
-	  </ul>
+<div id="header_top">
+	<div id="top">
+		<div class="Inside_pages">
+			<div class="Collection">
+				<c:if test="${empty user}">
+					<a href="${pageContext.request.contextPath}/jsp/dlu" class="green">请登录</a>
+					<a href="${pageContext.request.contextPath}/jsp/zhuc" class="green">免费注册</a>
+				</c:if>
+				<c:if test="${not empty user}">
+						   ${user.uName }:你好
+			    <a href="${pageContext.request.contextPath}/jsp/logout">退出</a>
+				</c:if>
+			</div>
+			<div class="hd_top_manu clearfix">
+				<ul class="clearfix">
+					<li class="hd_menu_tit" data-addclass="hd_menu_hover"><a
+						href="${pageContext.request.contextPath}/jsp/index">首页</a></li>
+					<li class="hd_menu_tit" data-addclass="hd_menu_hover"><a
+						href="#">我的小充</a></li>
+					<li class="hd_menu_tit" data-addclass="hd_menu_hover"><a
+						href="#">消息中心</a></li>
+					<li class="hd_menu_tit" data-addclass="hd_menu_hover"><a
+						href="#">商品分类</a></li>
+					<li class="hd_menu_tit" data-addclass="hd_menu_hover"><a
+						href="${pageContext.request.contextPath}/jsp/cart">我的购物车<b>(23)</b></a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
-    </div>
-  </div>
   <div id="header"  class="header page_style">
   <div class="logo"><a href="index.html"><img src="${pageContext.request.contextPath}/img/fanke2.png" /></a></div>
   <!--结束图层-->
@@ -115,7 +131,7 @@
       <dt class="transaction_manage"><em class="icon_2"></em>会员管理</dt>
         <dd>
       <ul>
-        <li> <a href="userInfo.jsp"> 用户信息</a></li>
+        <li> <a href="userInfo"> 用户信息</a></li>
         <li><a href="#"> 我的评论</a></li>
       </ul>
     </dd>
@@ -152,34 +168,31 @@
     <div class="title_style"><em></em>用户信息</div> 
       <!--用户信息样式-->
      <!--个人信息-->
+     <form action="${pageContext.request.contextPath}/admin/user/update" method="post">
       <div class="Personal_info" id="Personal">
          <ul class="xinxi">
-         <li><label>用户名：</label>  <span><input name="" type="text" value="化海天堂"  class="text"  disabled="disabled"/></span></li>
-         <li><label>真实姓名：</label>  <span><input name="" type="text" value="张小泉"  class="text"  disabled="disabled"/></span></li>
-          <li><label>出身日期：</label> <span class="time">1991年6月3日</span>
-           <div class="add_time">
-              <select name=""></select><select name=""></select><select name=""></select>
-           </div>
-          </li>
+         <li><label>用户名：</label>  <span><input name="uName" type="text" value="${u.uName }"  class="text" readonly="readonly"/></span></li>         
+          
           <li><label>用户性别：</label> <span class="sex">男</span>
           <div class="add_sex">
-          <input type="radio" name="sex" value="0" checked="checked">
+          <input type="radio" name="uSex" value="0" checked="checked">
                     保密&nbsp;&nbsp;
-                    <input type="radio" name="sex" value="1">
+                    <input type="radio" name="uSex" value="1">
                     男&nbsp;&nbsp;
-                    <input type="radio" name="sex" value="2">
+                    <input type="radio" name="uSex" value="2">
                   女&nbsp;&nbsp;</div></li>
-          <li><label>电子邮箱：</label>  <span><input name="" type="text" value="234567777@qq.com"  class="text"  disabled="disabled"/></span></li>
-          <li><label>用户QQ：</label>  <span><input name="" type="text" value="455656565"  class="text"  disabled="disabled"/></span></li>        
-          <li><label>移动电话：</label>  <span><input name="" type="text" value="455656565"  class="text"  disabled="disabled"/></span></li>
-          <li><label>固定电话：</label> <span><input name="" type="text" value="455656565"  class="text"  disabled="disabled"/></span></li>
-          <div class="bottom"><input name="" type="submit" value="修改信息"  class="modify"/><input name="" type="submit" value="确认修改"  class="confirm"/></div>
+          <li><label>电子邮箱：</label>  <span><input name="uEmail" type="text" value="${u.uEmail }"  class="text"  /></span></li>
+          
+          <li><label>电话：</label>  <span><input name="uPhone" type="text" value="${u.uPhone }"  class="text" /></span></li>
+          <li><label>支付账号：</label> <span><input name="uAccount" type="text" value="${u.uAccount }"  class="text" /></span></li>
+          <div class="bottom"><input name="" type="submit" value="确认修改"  class="confirm"/></div>
          </ul>
          <ul class="Head_portrait">
           <li class="User_avatar"><img src="${pageContext.request.contextPath}/images/people.png" /></li>
           <li><input name="name" type="submit" value="上传头像"  class="submit"/></li>
          </ul>
-      </div>    
+      </div> 
+      </form>   
    </div>
   </div>
  </div>
