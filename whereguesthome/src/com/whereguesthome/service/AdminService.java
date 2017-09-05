@@ -1,5 +1,7 @@
 package com.whereguesthome.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.ui.Model;
 
 import com.whereguesthome.pojo.Admin;
@@ -18,5 +20,5 @@ public interface AdminService {
 	 * @return
 	 */
 	//查询管理员信息
-	boolean selectByNmae(Model model, String aName, Admin admin);
+	boolean selectByNmae(HttpSession session,Model model, String aName, Admin admin);
 }
