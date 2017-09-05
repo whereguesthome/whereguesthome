@@ -136,7 +136,7 @@
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
 												<c:if test="${g.gPhoto !=null }">
-												<img src="${pageContext.request.contextPath}/picture/${g.gPhoto}" width="100" height="100"/></c:if>
+												<img src="/pic/${g.gPhoto}" width="100" height="100"/></c:if>
 											</td>
 											
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
