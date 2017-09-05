@@ -211,7 +211,7 @@ public class GoodsServiceImp implements GoodsService {
 
 	}
 
-	// 管理员分页以及模糊查询a
+	// 管理员分页以及模糊查询aa
 	@Override
 	public void findMyGoods(Model model, Integer pageNumber, Double gSprice, Double gSprice2, String name,
 			String name1) {
