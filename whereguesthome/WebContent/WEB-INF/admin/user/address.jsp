@@ -119,8 +119,8 @@
       <dt class="transaction_manage"><em class="icon_1"></em>订单管理</dt>
       <dd>
         <ul>
-          <li> <a href="order.jsp">我的订单</a></li>
-          <li> <a href="address.jsp">收货地址</a></li>
+          <li> <a href="${pageContext.request.contextPath}/admin/user/order">我的订单</a></li>
+          <li> <a href="${pageContext.request.contextPath}/admin/user/address">收货地址</a></li>
         </ul>
       </dd>
     </dl>

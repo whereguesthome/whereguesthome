@@ -25,7 +25,7 @@ public class UpPhoto {
 			 * =request.getSession().getServletContext().getRealPath("/")+
 			 * "img/";
 			 */
-			String pic_path = "E:\\Git\\tudou\\whereguesthome\\whereguesthome\\whereguesthome\\WebContent\\picture\\";
+			String pic_path = "D:\\git\\whereguesthome\\whereguesthome\\WebContent\\picture\\";
 
 			// 新的图片名称
 			String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));

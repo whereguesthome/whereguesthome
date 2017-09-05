@@ -92,7 +92,7 @@
 <!--菜单栏-->
 	<div class="Navigation" id="Navigation">
 		 <ul class="Navigation_name">
-			<li><a href="${pageContext.request.contextPath}/jsp/index.jsp">首页</a></li>
+			<li><a href="${pageContext.request.contextPath}/jsp/index">首页</a></li>
 			<li><a href="Brands.html">联系我们</a></li>
 		 </ul>			 
 		</div>
@@ -105,7 +105,7 @@
    <!--左侧样式-->
     <div class="left_style">
      <div class="menu_style">
-     <div class="user_title"><a href="${pageContext.request.contextPath}/admin/user/content.jsp">用户中心</a></div>
+     <div class="user_title"><a href="${pageContext.request.contextPath}/admin/user/content">用户中心</a></div>
      <div class="user_Head">
      <div class="user_portrait">
       <a href="#" title="修改头像" class="btn_link"></a> <img src="${pageContext.request.contextPath}/images/people.png">
@@ -122,8 +122,8 @@
       <dt class="transaction_manage"><em class="icon_1"></em>订单管理</dt>
       <dd>
         <ul>
-          <li> <a href="order.jsp">我的订单</a></li>
-          <li> <a href="address.jsp">收货地址</a></li>
+          <li> <a href="${pageContext.request.contextPath}/admin/user/order">我的订单</a></li>
+          <li> <a href="${pageContext.request.contextPath}/admin/user/address">收货地址</a></li>
         </ul>
       </dd>
     </dl>
