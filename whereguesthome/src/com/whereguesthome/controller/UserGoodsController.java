@@ -45,7 +45,7 @@ public class UserGoodsController {
 		public String list(Model m,Integer sId,HttpServletRequest req) throws Exception{
 			PageBean<Goods> pagebean=new PageBean<>();
 			pagebean.setTotalRecord(goodsService.getTotalRecord(sId));
-			pagebean.setPageSize(2);
+			pagebean.setPageSize(6);
 	      int pageNumber=1;
 	      if (req.getParameter("pageNumber")!=null) {
 	    	  pageNumber=Integer.valueOf(req.getParameter("pageNumber"));
@@ -64,7 +64,7 @@ public class UserGoodsController {
 		public String findParam(String gName,Model m,HttpServletRequest req) throws Exception{		
 			PageBean<Goods> pagebean=new PageBean<>();
 			pagebean.setTotalRecord(goodsService.findParam(gName));
-			pagebean.setPageSize(1);
+			pagebean.setPageSize(5);
 	      int pageNumber=1;
 	      if (req.getParameter("pageNumber")!=null) {
 	    	  pageNumber=Integer.valueOf(req.getParameter("pageNumber"));

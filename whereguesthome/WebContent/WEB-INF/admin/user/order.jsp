@@ -255,7 +255,7 @@
 														<td>
 															<div class="product_name clearfix">
 																<a href="#" class="product_img"><img
-																	src="${g.gPhoto }" width="80px" height="80px"></a> <a
+																	src="${pageContext.request.contextPath}/picture/${g.gPhoto }" width="80px" height="80px"></a> <a
 																	href="3" class="p_name">${g.gName }</a>
 																<p class="specification">${g.gDescribes }</p>
 															</div>

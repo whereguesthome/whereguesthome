@@ -53,7 +53,7 @@ body {
 						<c:forEach items="${shopcar1 }" var="s" varStatus="shop">
 							<tr class="active">
 								<td width="60" width="40%"><input type="hidden" name="id"
-									value="22"> <img src="${s.goods.gPhoto }" width="70"
+									value="22"> <img src="${pageContext.request.contextPath}/picture/${s.goods.gPhoto }" width="70"
 									height="60"></td>
 								<td width="30%"><a target="_blank">${s.goods.gName }</a></td>
 								<td width="20%">${s.goods.gSaleprice }</td>

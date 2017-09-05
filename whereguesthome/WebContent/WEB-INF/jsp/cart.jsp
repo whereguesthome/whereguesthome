@@ -131,7 +131,7 @@ font {
 									<td width="60" width="40%"><input type="hidden"
 										name="shopcars[${shop.index }].u_id" value="user.uId">
 										<img
-										src="${s.goods.gPhoto }"
+										src="${pageContext.request.contextPath}/picture/${s.goods.gPhoto }"
 										width="70" height="60"></td>
 									<td width="30%"><a target="_blank">${s.goods.gName }</a></td>
 									<td width="20%">${s.goods.gSaleprice }</td>
