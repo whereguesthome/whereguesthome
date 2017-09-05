@@ -21,8 +21,10 @@ public class AdminOrderServiceImp implements AdminOrderService{
 	
 	@Override
 	public int deleteByPrimaryKey(Model model,Integer oId) {
+		
 		int i = adminOrderMapper.deleteByPrimaryKey(oId);
-		if(i>0){
+		int a = adminOrderMapper.deleteItems(oId);
+		if(i>0&&a>0){
 			model.addAttribute("msg", "删除成功！");
 		}else{
 			model.addAttribute("msg2", "删除失败！");

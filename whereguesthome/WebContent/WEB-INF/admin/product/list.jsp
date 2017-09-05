@@ -70,20 +70,20 @@
 					</tr>
 					<tr>
 						<td class="ta_01" align="center" bgColor="#f5fafe">
-							<table cellspacing="0" cellpadding="1" rules="all"
+							<table style="table-layout:fixed;" cellspacing="0" cellpadding="1" rules="all"
 								bordercolor="gray" border="1" id="DataGrid1"
 								style="BORDER-RIGHT: gray 1px solid; BORDER-TOP: gray 1px solid; BORDER-LEFT: gray 1px solid; WIDTH: 100%; WORD-BREAK: break-all; BORDER-BOTTOM: gray 1px solid; BORDER-COLLAPSE: collapse; BACKGROUND-COLOR: #f5fafe; WORD-WRAP: break-word">
 								<tr
-									style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; HEIGHT: 25px; BACKGROUND-COLOR: #afd1f3">
+									style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; HEIGHT: 8px; BACKGROUND-COLOR: #afd1f3">
 
-									<td align="center" >
+									<td height="8%" width="8%" align="center" >
 										商品编号
 									</td>
 									
-									<td align="center" >
+									<td align="center" height="8%" width="8%">
 										商品图片
 									</td>
-									<td align="center" >
+									<td align="center" height="8%" width="8%">
 										商品名称
 									</td>
 									

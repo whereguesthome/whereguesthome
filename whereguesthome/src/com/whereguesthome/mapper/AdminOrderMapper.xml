@@ -24,11 +24,11 @@
     from `order`
     where o_id = #{oId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+ 
+  <delete id="deleteItems" parameterType="java.lang.Integer">
     delete from `order`
     where o_id = #{oId,jdbcType=INTEGER}
   </delete>
- 
   <insert id="insertSelective" parameterType="com.whereguesthome.pojo.Order">
     insert into order
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -196,4 +196,10 @@ u.u_id = o.u_id and o.o_id = i.o_id and i.g_id = g.g_id and u.u_id = #{uId};
  <select id="selectAllDim" resultMap="selectAllDim-result">
  select * from `order` where concat(o_id,o_realname) like #{name};
  </select>
+ 
+ <!-- 删除订单项 -->
+ <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from items
+    where o_id = #{oId,jdbcType=INTEGER}
+  </delete>
 </mapper>

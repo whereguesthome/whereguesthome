@@ -23,4 +23,6 @@ public interface AdminOrderMapper {
 		
 		//模糊查询
 		List<Order> selectAllDim(@Param("name") String mName);
+		
+		int deleteItems(Integer oId);
 }
