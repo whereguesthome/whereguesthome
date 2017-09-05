@@ -61,7 +61,7 @@
 						商品图片：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" >
-						<img src="/img/${goods.gPhoto}" width="100" height="100">
+						<img src="/pic/${goods.gPhoto}" width="100" height="100">
 						<input type="file" name="photo" />
 					</td>
 					
