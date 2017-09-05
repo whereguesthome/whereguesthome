@@ -42,7 +42,7 @@
 				<a href="${p.gId }">
 					<img src="${pageContext.request.contextPath}/picture/${p.gPhoto}" width="170" height="170" style="display: inline-block;">
 				</a>
-				<p><a href="${p.gName }" style='color:green'>${p.gName }</a></p>
+				<p><a href="${p.gId }" style='color:green'>${p.gName }</a></p>
 				<p><font color="#FF0000">商城价：&yen;${p.gSaleprice}</font></p>
 			</div>
 

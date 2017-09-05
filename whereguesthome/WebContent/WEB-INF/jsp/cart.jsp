@@ -133,7 +133,7 @@ font {
 										<img
 										src="${pageContext.request.contextPath}/picture/${s.goods.gPhoto }"
 										width="70" height="60"></td>
-									<td width="30%"><a target="_blank">${s.goods.gName }</a></td>
+									<td width="30%"><a href="${s.goods.gId}" target="_blank">${s.goods.gName }</a></td>
 									<td width="20%">${s.goods.gSaleprice }</td>
 									<td width="10%" class="shul"><input type="text"
 										name="shopcars[${shop.index }].s_num" value="${s.s_num }"
