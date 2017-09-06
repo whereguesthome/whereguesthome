@@ -13,10 +13,11 @@
     <result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
     <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
     <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+    <result column="o_orderId" jdbcType="VARCHAR" property="o_orderId"/>
   </resultMap>
   <sql id="Base_Column_List">
     o_id, u_id, o_realname, o_address, o_zip, o_phone, o_payment, o_remarks, o_time, 
-    o_tag, o_price
+    o_tag, o_price,o_orderId
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -140,7 +141,7 @@
   </update>
  
   <resultMap id="selectAll-result" type="com.whereguesthome.pojo.Order">
-    <id column="o_id" jdbcType="INTEGER" property="oId" />
+   <id column="o_id" jdbcType="INTEGER" property="oId" />
     <result column="u_id" jdbcType="INTEGER" property="uId" />
     <result column="o_realname" jdbcType="VARCHAR" property="oRealname" />
     <result column="o_address" jdbcType="VARCHAR" property="oAddress" />
@@ -151,6 +152,7 @@
     <result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
     <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
     <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+    <result column="o_orderId" jdbcType="VARCHAR" property="o_orderId"/>
   </resultMap>
   
  <select id="selectAll" resultMap="selectAll-result">
@@ -174,7 +176,7 @@
   
  <select id="gfindAll" resultMap="gfindAll-result">
  select g.*,i.i_count from `user` u,`order` o,items i, goods g where 
-u.u_id = o.u_id and o.o_id = i.o_id and i.g_id = g.g_id and u.u_id = #{uId};
+u.u_id = o.u_id and o.o_id = i.o_id and i.g_id = g.g_id and u.u_id = #{uId} and  o.o_orderId = #{o_orderId};
  
  </select>
  
@@ -191,6 +193,7 @@ u.u_id = o.u_id and o.o_id = i.o_id and i.g_id = g.g_id and u.u_id = #{uId};
     <result column="o_time" jdbcType="TIMESTAMP" property="oTime" />
     <result column="o_tag" jdbcType="VARCHAR" property="oTag" />
     <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+    <result column="o_orderId" jdbcType="VARCHAR" property="o_orderId"/>
   </resultMap>
   
  <select id="selectAllDim" resultMap="selectAllDim-result">

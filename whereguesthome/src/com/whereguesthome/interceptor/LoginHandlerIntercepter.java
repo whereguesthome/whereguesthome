@@ -50,7 +50,7 @@ public class LoginHandlerIntercepter implements HandlerInterceptor {
 		String url = arg0.getRequestURI();
 		System.out.println("哈哈");
 		// 判断url是否为公开地址(实际使用将公开地址配在文件中)/
-		if (url.indexOf("denglu") >= 0) {
+		if (url.indexOf("denglu") >= 0||url.indexOf("user")>=0) {
 			// 如果进行登录提交，放行
 			return true;
 		}

@@ -42,7 +42,8 @@ public class AdminOrderServiceImp implements AdminOrderService{
 	public void selectByPrimaryKey(Model model,Integer oId,Integer uId) {
 		
 		Order order = adminOrderMapper.selectByPrimaryKey(oId);
-		List<GoodsItems> listg  = adminOrderMapper.gfindAll(uId);
+		String o_orderId = order.getO_orderId();
+		List<GoodsItems> listg  = adminOrderMapper.gfindAll(uId,o_orderId);
 	
 		model.addAttribute("order", order);
 		model.addAttribute("listg", listg);
